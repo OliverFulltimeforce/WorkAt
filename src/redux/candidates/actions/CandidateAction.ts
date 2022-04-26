@@ -26,9 +26,11 @@ import {
 import {
   GET_ALL_CANDIDATES,
   GET_ALL_CANDIDATES_FILTERED,
-  POST_CANDIDATE,
+  CREATE_CANDIDATE,
+  UPDATE_CANDIDATE_INFO,
 } from '../../../config/routes/endpoints';
 import ClientAxios from '../../../config/api/axios';
+import { ICandidate } from '../types/data';
 
 export function GetAllCandidates() {
   return async function (dispatch: Dispatch) {
@@ -61,12 +63,16 @@ export function GetCandidatesFiltered(
   position?: string[],
   secondary_status?: string[],
   query?: string,
+  apply_next?: boolean,
+  previousQuery?: ICandidate[],
 ) {
   return async function (dispatch: Dispatch) {
     const requestBody = JSON.stringify({
       position,
       secondary_status,
       query,
+      apply_next,
+      previousQuery,
     });
 
     dispatch({ type: ActionTypes.SET_IS_LOADING });
@@ -107,7 +113,7 @@ export function AddCandidate(user: any) {
     try {
       const {
         data: { id },
-      } = await ClientAxios.post(POST_CANDIDATE, user);
+      } = await ClientAxios.post(CREATE_CANDIDATE, user); // cambiar esto para que no de error
       dispatch(AddCandidateSuccess(user));
       dispatch(GetID(id));
     } catch (error) {
@@ -140,6 +146,14 @@ export function CleanSearch() {
   };
 }
 
+export function SetAppliedFilters() {
+  return function (dispatch: Dispatch) {
+    return dispatch({
+      type: ActionTypes.SET_APPLIED_FILTERS,
+    });
+  };
+}
+
 const AddCandidateLoad = (status: boolean) => ({
   type: ADD_CANDIDATE,
   payload: status,
@@ -166,7 +180,7 @@ export function GetData(id: number) {
   return async (dispatch: any) => {
     dispatch(GetDataLoad(true));
     try {
-      const response = await ClientAxios.get(`${POST_CANDIDATE}/${id}`); ///candidates/${id}
+      const response = await ClientAxios.get(`${CREATE_CANDIDATE}/${id}`); ///candidates/${id}
       dispatch(GetDataSuccess(response.data));
     } catch (error) {
       dispatch(GetDataError(true));
@@ -207,7 +221,7 @@ export function DataSaveEdit(user: any) {
     dispatch(DataEditLoad(true));
 
     try {
-      ClientAxios.put(`${POST_CANDIDATE}/${user.id}`, user); ///candidates/${user.id}
+      ClientAxios.put(`${UPDATE_CANDIDATE_INFO}/${user.id}`, user); ///candidates/${user.id}
       dispatch(DataEditSuccess(user));
     } catch (error) {
       dispatch(DataEditError(true));

@@ -1,14 +1,14 @@
 import { ActionTypes } from '../types/index';
-import { CandidateState } from './states';
+import { ICandidate } from './data';
 
 export type GetCandidatesAction = {
   type: ActionTypes.GET_CANDIDATES;
-  payload: CandidateState;
+  payload: ICandidate[];
 };
 
 export type GetCandidatesFilteredAction = {
   type: ActionTypes.GET_CANDIDATES_FILTERED;
-  payload: CandidateState;
+  payload: ICandidate[];
 };
 
 export type SetLoadingAction = {

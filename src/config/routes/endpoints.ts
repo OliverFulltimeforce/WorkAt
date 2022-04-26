@@ -1,12 +1,13 @@
 /* ENDPOINTS FROM LINK 1 */
-export const POST_USER = '/candidate/create';
+export const CREATE_CANDIDATE = '/candidate/create';
 
 /* ENDPOINTS FROM LINK 2 */
-export const POST_CANDIDATE = '/candidate/info/update';
+export const UPDATE_CANDIDATE_INFO = '/candidate/info/update';
 
 /* ENDPOINTS FROM ADMIN */
 export const POST_FEED = '/candidate/conclusions/update';
 
+/*ENDPOINTS FROM KANBAN*/
 export const GET_ALL_CANDIDATES = '/candidate';
 export const GET_ALL_CANDIDATES_FILTERED = '/candidate/filter';
 

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   CleanFilters,
+  SetAppliedFilters,
   GetCandidatesFiltered,
 } from '../../redux/candidates/actions/CandidateAction';
 import GetAllPositions from '../../redux/positions/actions/PositionsActions';
@@ -12,8 +13,12 @@ import secondaryStatus from '../../config/kanban/constants';
 export default function Filters() {
   const dispatch = useDispatch();
 
+  const previousQuery = useSelector((state: State) => state.info.candidates);
   const cleanFilters = useSelector((state: State) => state.info.cleanFilters);
   const positions = useSelector((state: State) => state.positions.positions);
+  const appliedFilters = useSelector(
+    (state: State) => state.info.appliedFilters,
+  );
 
   // adds a checked property to each job object
   let positionsWithCheck = positions.map((pos) => {
@@ -72,9 +77,25 @@ export default function Filters() {
   const handleActionDispatch = () => {
     if (position.length === 0 && secondary_status.length === 0) return; // if no filters selected, no action is dispatched
 
-    dispatch(GetCandidatesFiltered(position, secondary_status, undefined));
-    setShowPositionFilter(false);
-    setShowStatusFilter(false);
+    if (appliedFilters) {
+      dispatch(
+        GetCandidatesFiltered(
+          position,
+          secondary_status,
+          undefined,
+          true,
+          previousQuery,
+        ),
+      );
+      setShowPositionFilter(false);
+      setShowStatusFilter(false);
+    } else {
+      dispatch(GetCandidatesFiltered(position, secondary_status, undefined));
+      dispatch(SetAppliedFilters());
+
+      setShowPositionFilter(false);
+      setShowStatusFilter(false);
+    }
   };
 
   function useOutsideAlerter(ref: React.RefObject<HTMLDivElement>) {
