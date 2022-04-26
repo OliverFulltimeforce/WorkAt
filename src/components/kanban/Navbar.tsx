@@ -10,7 +10,7 @@ export default function Navbar({ userName }: NavbarProps) {
 
   return (
     <header className="absolute top-0 left-0 w-screen">
-      <nav className="flex flex-row text-white items-center justify-evenly p-4 bg-slate-600">
+      <nav className="flex flex-row text-white items-center justify-evenly p-4 bg-[#475564]">
         <div className="relative">
           <button
             onClick={() => setShowProfileMenu(!showProfileMenu)}
