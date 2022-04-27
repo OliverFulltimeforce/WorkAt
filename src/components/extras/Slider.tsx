@@ -1,7 +1,7 @@
-import { useSlider } from "../../hooks/useSlider";
-import SliderControl from "../buttons/SliderControl";
-import SliderData from "./../../assets/json/SliderData.json";
-import "./../../assets/scss/Slider.scss";
+import { useSlider } from '../../hooks/useSlider';
+import SliderControl from '../buttons/SliderControl';
+import SliderData from './../../assets/json/SliderData.json';
+import './../../assets/scss/slider.scss';
 
 const Slider = () => {
   /*  */
@@ -15,7 +15,7 @@ const Slider = () => {
             <div
               key={obj.id}
               className={
-                slideIndex === index + 1 ? "slide active-anim" : "slide"
+                slideIndex === index + 1 ? 'slide active-anim' : 'slide'
               }
             >
               <img
@@ -25,9 +25,9 @@ const Slider = () => {
               />
             </div>
             {slideIndex === 1 ? (
-              <SliderControl moveSlide={nextSlide} direction={"next"} />
+              <SliderControl moveSlide={nextSlide} direction={'next'} />
             ) : (
-              <SliderControl moveSlide={prevSlide} direction={"prev"} />
+              <SliderControl moveSlide={prevSlide} direction={'prev'} />
             )}
           </div>
         );
@@ -38,7 +38,7 @@ const Slider = () => {
           <div
             key={index}
             onClick={() => moveDot(index + 1)}
-            className={slideIndex === index + 1 ? "dot active" : "dot"}
+            className={slideIndex === index + 1 ? 'dot active' : 'dot'}
           ></div>
         ))}
       </div>
