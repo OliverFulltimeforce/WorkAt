@@ -1,5 +1,5 @@
 import { ImSpinner9 } from 'react-icons/im';
-import '../../assets/scss/loading.scss';
+import '../../assets/scss/Loading.scss';
 
 const Loading = () => {
   return (
