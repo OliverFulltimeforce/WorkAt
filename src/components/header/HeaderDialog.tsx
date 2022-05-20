@@ -3,6 +3,7 @@ import { IoCloseCircleOutline } from 'react-icons/io5';
 import { State } from '../../redux/store/store';
 import secondaryStatus from '../../config/kanban/constants';
 import Dropdown from '../inputs/Dropdown';
+import getCandidateDetailHeader from '../../utils/getCandidateDetailHeader';
 
 interface Props {
   isClose: any;
@@ -17,11 +18,13 @@ const HeaderDialog: React.FC<Props> = ({ isClose, color }) => {
     (status) => status.value === details.secondary_status,
   )?.color;
 
+  const headerMainText = getCandidateDetailHeader(details.main_status);
+
   return (
     <h4 className={headerColor ? headerColor : color}>
       <div className="flex justify-center relative">
         <span className="text-white text-[15px] font-semibold font-raleway uppercase py-2">
-          Chosen for {position_applied ? position_applied : 'N/A'}
+          {headerMainText} {position_applied ? position_applied : 'N/A'}
         </span>
         <Dropdown />
         <button className="absolute top-[7px] right-[15px]" onClick={isClose}>

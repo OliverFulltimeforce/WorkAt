@@ -1,16 +1,22 @@
-import { useEffect, useRef, useState } from "react";
-import { IoIosArrowDropdownCircle } from "react-icons/io";
-import Jobs from "../../assets/json/JobPosition.json";
+import { useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { IoIosArrowDropdownCircle } from 'react-icons/io';
+import { State } from '../../redux/store/store';
+import detectOutsideClick from '../../utils/detectOutsideClick';
 
 const Dropdown = () => {
   /*  */
   const [position, setPosition] = useState<Array<string>>([]);
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const refDropdown = useRef<HTMLDivElement>(null);
-  useClickOutside(refDropdown);
+
+  detectOutsideClick(refDropdown, [setShowDropdown]);
+
+  let positions = useSelector((state: State) => state.positions.data.docs);
+  positions = positions.filter((pos) => pos.isActive);
 
   const handlePositionCaptureCheck = (
-    evt: React.ChangeEvent<HTMLInputElement>
+    evt: React.ChangeEvent<HTMLInputElement>,
   ) => {
     if (evt.target.checked) {
       setPosition([...position, evt.target.value]);
@@ -18,20 +24,6 @@ const Dropdown = () => {
       setPosition([...position.filter((item) => item !== evt.target.value)]);
     }
   };
-
-  function useClickOutside(ref: React.RefObject<HTMLDivElement>) {
-    useEffect(() => {
-      function handleClickOutside(event: any) {
-        if (ref.current && !ref.current.contains(event.target)) {
-          setShowDropdown(false);
-        }
-      }
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, [ref]);
-  }
 
   return (
     <>
@@ -44,7 +36,7 @@ const Dropdown = () => {
         </button>
         <div
           className={`${
-            showDropdown ? "block" : "hidden"
+            showDropdown ? 'block' : 'hidden'
           }  absolute z-50 laptop:left-0 mobile:right-0 mobile:w-52 laptop:w-60 mt-1 mobile:mr-5 laptop:ml-5 origin-top-left bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
         >
           <div className="px-1 py-1">
@@ -53,24 +45,24 @@ const Dropdown = () => {
                 Recommed for other position:
               </span>
             </div>
-            {Jobs.map(({ id, name }) => (
-              <div key={id}>
+            {positions.map(({ _id, title }) => (
+              <div key={_id}>
                 <div className="grid border-b-2 border-light-color w-full mt-6">
                   <div className="flex-row-reverse items-center pl-2 pr-4">
                     <input
-                      id={name}
-                      className="ml-2 mr-2 focus:outline-none"
+                      id={_id}
+                      className="ml-2 mr-2 focus:outline-none hover:cursor-pointer"
                       type="checkbox"
-                      name={name}
-                      checked={position.indexOf(name) !== -1 ? true : false}
-                      value={name}
+                      name={title}
+                      checked={position.indexOf(_id!) !== -1 ? true : false}
+                      value={_id}
                       onChange={handlePositionCaptureCheck}
                     />
                     <label
                       className="w-full font-raleway font-light mobile:text-xs laptop:text-[15px]"
-                      htmlFor={name}
+                      htmlFor={_id}
                     >
-                      <span className="text-gray-color">{name}</span>
+                      <span className="text-gray-color">{title}</span>
                     </label>
                   </div>
                 </div>
