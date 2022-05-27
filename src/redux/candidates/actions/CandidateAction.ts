@@ -8,7 +8,7 @@ import {
   GetCandidatesFilteredResponse,
   GetCandidatesResponse,
   UpdateCandidateConclusionResponse,
-  UpdateCandidateInfoResponse,
+  UpdateCandidateResponse,
   UpdateCandidateStatusResponse,
   ValidateTokenResponse,
 } from "../types/axiosResponses";
@@ -30,13 +30,10 @@ import {
   SetCandidateLoadingAction,
   ValidateTokenAction,
   UpdateCandidateConclusionAction,
+  UpdateCandidateAction,
 } from "../types/dispatchActions";
 
 import {
-  ADD_CANDIDATE,
-  ADD_CANDIDATE_SUCCESS,
-  ADD_CANDIDATE_ERROR,
-  GET_ID,
   GET_DATA,
   GET_DATA_SUCCESS,
   GET_DATA_ERROR,
@@ -51,6 +48,7 @@ import {
   GET_ALL_CANDIDATES,
   GET_ALL_CANDIDATES_FILTERED,
   POST_CANDIDATE,
+  UPDATE_CANDIDATE,
   UPDATE_CONCLUSION,
   UPDATE_STATUS,
   VALIDATE_TOKEN,
@@ -292,22 +290,6 @@ export function GenerateUrl(_id: string) {
   };
 }
 
-export function AddCandidate(user: any) {
-  return async (dispatch: any) => {
-    dispatch(AddCandidateLoad(true));
-
-    try {
-      const {
-        data: { id },
-      } = await ClientAxios.post(POST_CANDIDATE, user);
-      dispatch(AddCandidateSuccess(user));
-      dispatch(GetID(id));
-    } catch (error) {
-      dispatch(AddCandidateError(true));
-    }
-  };
-}
-
 export function UpdateCandidateStatus(
   _id: string,
   main_status: string,
@@ -402,6 +384,57 @@ export function UpdateCandidateConclusion(
   };
 }
 
+export function UpdateCandidate(
+  _id: string,
+  college: string,
+  salary: string,
+  available: string,
+  skill: string | Blob,
+  description: string
+) {
+  return async function (dispatch: Dispatch) {
+    dispatch<SetUpdatingCandidateAction>({
+      type: ActionTypes.SET_IS_CANDIDATE_UPDATING,
+    });
+
+    try {
+      const { data } = await PrivateAxios.put<UpdateCandidateResponse>(
+        `${UPDATE_CANDIDATE}/${_id}`,
+        {
+          college,
+          salary,
+          available,
+          skill,
+          description,
+        }
+      );
+
+      dispatch<SetUpdatingCandidateAction>({
+        type: ActionTypes.SET_IS_NOT_CANDIDATE_UPDATING,
+      });
+
+      return dispatch<UpdateCandidateAction>({
+        type: ActionTypes.UPDATE_CANDIDATE,
+        payload: data.candidate,
+      });
+    } catch (error: any) {
+      if (error.response) {
+        dispatch<SetCandidateErrorAction>({
+          type: ActionTypes.SET_CANDIDATE_ERROR,
+          payload: error.response.data,
+        });
+      }
+      dispatch<SetCandidateLoadingAction>({
+        type: ActionTypes.SET_IS_NOT_CANDIDATE_LOADING,
+      });
+      dispatch<SetCandidateErrorAction>({
+        type: ActionTypes.SET_CANDIDATE_ERROR,
+        payload: error,
+      });
+    }
+  };
+}
+
 export function ValidateToken(token: string) {
   return async function (dispatch: Dispatch) {
     try {
@@ -441,27 +474,6 @@ export function ClearCandidateSuccess(dispatch: Dispatch) {
     type: ActionTypes.CLEAR_CANDIDATE_SUCCESS,
   });
 }
-
-const AddCandidateLoad = (status: boolean) => ({
-  type: ADD_CANDIDATE,
-  payload: status,
-});
-
-const AddCandidateSuccess = (user: any) => ({
-  type: ADD_CANDIDATE_SUCCESS,
-  payload: user,
-});
-
-const AddCandidateError = (status: boolean) => ({
-  type: ADD_CANDIDATE_ERROR,
-  payload: status,
-});
-
-/* HELPER TO GET ID */
-const GetID = (id: number) => ({
-  type: GET_ID,
-  payload: id,
-});
 
 /* FUNCTION TO GET DATA FROM DATABASE */
 export function GetData(id: number) {

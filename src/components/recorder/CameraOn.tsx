@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Webcam from "react-webcam";
 
@@ -24,7 +24,7 @@ const CameraOn: React.FC<Props> = ({ webcamRef, isCameraOn, init }) => {
       await init(constraints);
     };
     onClick();
-  }, []);
+  }, [init]);
 
   return (
     <div

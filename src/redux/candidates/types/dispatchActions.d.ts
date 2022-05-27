@@ -34,6 +34,12 @@ export type SetCandidateLoadingAction = {
     | ActionTypes.SET_IS_NOT_CANDIDATE_LOADING;
 };
 
+export type SetCameraLoadingAction = {
+  type:
+    | ActionTypes.SET_IS_CAMERA_LOADING
+    | ActionTypes.SET_IS_NOT_CAMERA_LOADING;
+};
+
 export type SetUpdatingCandidateAction = {
   type:
     | ActionTypes.SET_IS_CANDIDATE_UPDATING
@@ -51,6 +57,11 @@ export type ClearCandidateErrorAction = {
 
 export type CreateCandidateAction = {
   type: ActionTypes.CREATE_CANDIDATE;
+  payload: ICandidate;
+};
+
+export type UpdateCandidateAction = {
+  type: ActionTypes.UPDATE_CANDIDATE;
   payload: ICandidate;
 };
 
@@ -115,4 +126,6 @@ export type Action =
   | CleanCandidateSuccessAction
   | SetCandidateSuccessAction
   | ValidateTokenAction
-  | GenerateUrlAction;
+  | GenerateUrlAction
+  | UpdateCandidateAction
+  | UpdateCandidateConclusionAction;

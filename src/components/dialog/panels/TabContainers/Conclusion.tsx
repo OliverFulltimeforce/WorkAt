@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { IoSend } from "react-icons/io5";
 import InputConclusion from "../../../inputs/InputConclusion";
 
@@ -61,7 +61,7 @@ const Conclusion = () => {
                               process.env.PUBLIC_URL +
                               `/images/picture-profile.svg`
                             }
-                            alt="profile-picture"
+                            alt="profile-gmail-img"
                           />
                           <div className="bg-cyan-color rounded-[5px] w-[336px] h-auto my-2">
                             <p className="font-raleway text-white text-xs text-right py-1 px-4">
@@ -110,7 +110,7 @@ const Conclusion = () => {
                               process.env.PUBLIC_URL +
                               `/images/picture-profile.svg`
                             }
-                            alt="profile-picture"
+                            alt="profile-gmail-img"
                           />
                           <div className="bg-cyan-color rounded-[5px] w-[336px] h-auto my-2">
                             <p className="font-raleway text-white text-xs text-right py-1 px-4">

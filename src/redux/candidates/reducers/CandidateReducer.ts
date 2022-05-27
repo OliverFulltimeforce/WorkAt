@@ -1,8 +1,4 @@
 import {
-  ADD_CANDIDATE,
-  ADD_CANDIDATE_SUCCESS,
-  ADD_CANDIDATE_ERROR,
-  GET_ID,
   GET_DATA,
   GET_DATA_SUCCESS,
   GET_DATA_ERROR,
@@ -129,6 +125,13 @@ function CandidateReducer(state = initialState, action: Action) {
     }
 
     case ActionTypes.UPDATE_CONCLUSION: {
+      return {
+        ...state,
+        candidates: action.payload,
+      };
+    }
+
+    case ActionTypes.UPDATE_CANDIDATE: {
       return {
         ...state,
         candidates: action.payload,
@@ -270,20 +273,13 @@ function CandidateReducer(state = initialState, action: Action) {
       };
     }
 
-    case ADD_CANDIDATE:
     case GET_DATA:
     case DATA_EDIT:
       return {
         ...state,
         loading: action.payload,
       };
-    case ADD_CANDIDATE_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        user: action.payload,
-      };
-    case ADD_CANDIDATE_ERROR:
+
     case GET_DATA_ERROR:
     case DATA_EDIT_ERROR:
       return {
@@ -291,11 +287,7 @@ function CandidateReducer(state = initialState, action: Action) {
         loading: false,
         error: action.payload,
       };
-    case GET_ID:
-      return {
-        ...state,
-        userId: action.payload,
-      };
+
     case GET_DATA_SUCCESS:
       return {
         ...state,

@@ -25,6 +25,11 @@ export type CreateCandidateResponse = {
   candidate: ICandidate;
 };
 
+export type UpdateCandidateResponse = {
+  status: number;
+  candidate: ICandidate;
+};
+
 export type UpdateCandidateStatusResponse = {
   status: number;
   message: string;

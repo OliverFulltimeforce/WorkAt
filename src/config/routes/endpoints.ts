@@ -11,6 +11,7 @@ export const GET_ALL_CANDIDATES = "/candidate";
 export const GET_ALL_CANDIDATES_FILTERED = "/candidate/filter";
 export const UPDATE_STATUS = "/candidate/status/update";
 export const GENERATE_URL = "/candidate/url/create";
+export const UPDATE_CANDIDATE = "/candidate/info/update";
 
 export const GET_ALL_POSITIONS = "/position";
 export const CREATE_POSITION = "/position/create";

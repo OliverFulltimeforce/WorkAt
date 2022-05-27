@@ -1,10 +1,10 @@
-import { AiOutlinePause } from "react-icons/ai";
+import { FaRegStopCircle } from "react-icons/fa";
 
 interface Props {
   onClick(): void;
 }
 
-const Pause: React.FC<Props> = ({ onClick }) => {
+const Stop: React.FC<Props> = ({ onClick }) => {
   return (
     <div className="mt-5 font-raleway mobile:grid mobile:justify-items-center laptop:flex laptop:items-start">
       <button
@@ -12,12 +12,12 @@ const Pause: React.FC<Props> = ({ onClick }) => {
         onClick={onClick}
       >
         <div className="flex items-center justify-between">
-          Pause &nbsp;{" "}
-          <AiOutlinePause className="text-gray-color w-[20px] h-[20px]" />
+          Stop &nbsp;{" "}
+          <FaRegStopCircle className="text-gray-color w-[20px] h-[20px]" />
         </div>
       </button>
     </div>
   );
 };
 
-export default Pause;
+export default Stop;

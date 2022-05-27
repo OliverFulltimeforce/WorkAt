@@ -1,31 +1,31 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 /* Components */
-import Loading from '../extras/Loading';
-import Submit from '../buttons/Submit';
-import SingleSelect from '../inputs/SingleSelect';
-import TextArea from '../inputs/TextArea';
-import Currency from '../inputs/Currency';
+import Loading from "../extras/Loading";
+import Submit from "../buttons/Submit";
+import SingleSelect from "../inputs/SingleSelect";
+import TextArea from "../inputs/TextArea";
+import Currency from "../inputs/Currency";
 
 /* Paths */
-import { VIEW_DETAILS, VIEW_VIDEO_COMPLETED } from '../../config/routes/paths';
+import { VIEW_DETAILS, VIEW_VIDEO_COMPLETED } from "../../config/routes/paths";
 
 /* Json files */
-import Training from '../../assets/json/College.json';
-import Available from '../../assets/json/Available.json';
-import Skills from '../../assets/json/Skills.json';
-import Coins from '../../assets/json/Coin.json';
+import Training from "../../assets/json/College.json";
+import Available from "../../assets/json/Available.json";
+import Skills from "../../assets/json/Skills.json";
+import Coins from "../../assets/json/Coin.json";
 
 /* Redux */
-import { State } from '../../redux/store/store';
-import { useDispatch, useSelector } from 'react-redux';
+import { State } from "../../redux/store/store";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  AddCandidate,
   DataSaveEdit,
-} from '../../redux/candidates/actions/CandidateAction';
-import MultipleSelect from '../inputs/MultipleSelect';
+  UpdateCandidate,
+} from "../../redux/candidates/actions/CandidateAction";
+import MultipleSelect from "../inputs/MultipleSelect";
 
 const FrmData = () => {
   /*  */
@@ -50,17 +50,17 @@ const FrmData = () => {
 
   const candidateDetail = useSelector((state: State) => state.info.detail);
 
-  const DataToEdit = useSelector((state: any) => state.info.user);
+  //const DataToEdit = useSelector((state: any) => state.info.user);
   const toEdit = useSelector((state: any) => state.info.isToEdit);
   const userID = useSelector((state: any) => state.info.userId);
 
   /* States from the component */
-  let [college, setCollege] = useState({ id: 0, name: '' });
-  let [currency, setCurrency] = useState({ id: 0, name: '' });
-  let [salary, setSalary] = useState('');
-  let [available, setAvailable] = useState({ id: 0, name: '' });
-  let [skill, setSkill] = useState<string | Blob>('');
-  let [description, setDescription] = useState('');
+  let [college, setCollege] = useState({ id: 0, name: "" });
+  let [currency, setCurrency] = useState({ id: 0, name: "" });
+  let [salary, setSalary] = useState("");
+  let [available, setAvailable] = useState({ id: 0, name: "" });
+  let [skill, setSkill] = useState<string | Blob>("");
+  let [description, setDescription] = useState("");
 
   /* Values which will be validated */
   const [isCollegeValid, setIsCollegeValid] = useState(false);
@@ -69,25 +69,19 @@ const FrmData = () => {
   const [isSkillValid, setIsSkillValid] = useState(false);
 
   /*  */
-  const AddNewCandidate = (user: any) => dispatch(AddCandidate(user));
+  const candidateId = useSelector((state: State) => state.info.detail._id);
   const EditDataCandidate = (user: any) => dispatch(DataSaveEdit(user, userID));
   const loading = useSelector((state: any) => state.info.loading);
 
   /* Function to store validation */
   const isFormValid = () => {
-    college.name === '' ? setIsCollegeValid(true) : setIsCollegeValid(false);
-    currency.name === '' ? setIsCurrencyValid(true) : setIsCurrencyValid(false);
-    salary === '' ? setIsSalaryValid(true) : setIsSalaryValid(false);
+    college.name === "" ? setIsCollegeValid(true) : setIsCollegeValid(false);
+    currency.name === ""
+      ? setIsCurrencyValid(!isCurrencyValid)
+      : setIsCurrencyValid(false);
+    salary === "" ? setIsSalaryValid(true) : setIsSalaryValid(false);
     !skill ? setIsSkillValid(true) : setIsSkillValid(false);
   };
-
-  /* FORM DATA */
-  const formData = new FormData();
-  formData.append('academic_training', college.name);
-  formData.append('salary_expectations', salary);
-  formData.append('available_from', available.name);
-  formData.append('skill', skill);
-  formData.append('working_reason', description);
 
   /* OnSubmit */
   const onSubmit = (evt: any) => {
@@ -98,7 +92,16 @@ const FrmData = () => {
     if (!college || !currency || !salary || !skill) {
       return;
     } else {
-      AddNewCandidate(formData);
+      dispatch(
+        UpdateCandidate(
+          candidateId,
+          college.name,
+          salary,
+          available.name,
+          skill,
+          description
+        )
+      );
       navigate(VIEW_DETAILS);
     }
   };
@@ -111,7 +114,7 @@ const FrmData = () => {
     if (!salary || !skill) {
       return;
     } else {
-      EditDataCandidate(formData);
+      EditDataCandidate({ college, salary, available, skill, description });
       navigate(VIEW_VIDEO_COMPLETED);
     }
   };
@@ -134,8 +137,8 @@ const FrmData = () => {
             data={training}
             for="college"
             id="college"
-            label={t('info.idiom.label')}
-            placeholder={t('info.idiom.placeholder')}
+            label={t("info.idiom.label")}
+            placeholder={t("info.idiom.placeholder")}
             setValue={setCollege}
             showAlert={isCollegeValid}
             value={college}
@@ -143,8 +146,8 @@ const FrmData = () => {
           />
           <Currency
             id="salary"
-            label={t('info.currency.placeholder')}
-            placeholder={t('info.currency.placeholder')}
+            label={t("info.currency.placeholder")}
+            placeholder={t("info.currency.placeholder")}
             RegExp={RegExp.numbers}
             setValue={setSalary}
             showAlert={isSalaryValid}
@@ -159,8 +162,8 @@ const FrmData = () => {
             data={time}
             for="available"
             id="available"
-            label={t('info.available.label')}
-            placeholder={t('info.available.placeholder')}
+            label={t("info.available.label")}
+            placeholder={t("info.available.placeholder")}
             setValue={setAvailable}
             value={available}
             width="laptop:w-1/3 mobile:w-1/2 tablet:w-1/3"
@@ -181,7 +184,7 @@ const FrmData = () => {
         </div>
         {!toEdit ? (
           <Submit
-            name={t('submit_button.name')}
+            name={t("submit_button.name")}
             width="w-full tablet:w-28"
             onSubmit={onSubmit}
           />
