@@ -36,9 +36,7 @@ export default function Filters() {
   detectOutsideClick(wraperRef, [setShowPositionFilter, setShowStatusFilter]);
 
   const handlePositionCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('event =', e);
     if (e.target.checked) {
-      console.log('check');
       setPosition([...position, e.target.value]);
     } else {
       setPosition([...position.filter((item) => item !== e.target.value)]);
