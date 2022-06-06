@@ -7,6 +7,7 @@ import GetAllPositions from '../../redux/positions/actions/PositionsActions';
 import detectOutsideClick from '../../utils/detectOutsideClick';
 import secondaryStatus from '../../config/kanban/constants';
 import Apply from '../buttons/Apply';
+import Checkbox from '../inputs/Checkbox';
 
 export default function Filters() {
   const dispatch = useDispatch();
@@ -35,7 +36,9 @@ export default function Filters() {
   detectOutsideClick(wraperRef, [setShowPositionFilter, setShowStatusFilter]);
 
   const handlePositionCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('event =', e);
     if (e.target.checked) {
+      console.log('check');
       setPosition([...position, e.target.value]);
     } else {
       setPosition([...position.filter((item) => item !== e.target.value)]);
@@ -125,36 +128,39 @@ export default function Filters() {
         <div
           className={
             showPositionFilter
-              ? 'transition ease-in-out duration-200 opacity-100 absolute z-10 rounded-sm mt-2 bg-white shadow-md'
+              ? 'transition ease-in-out duration-200 opacity-100 absolute z-10 rounded-sm mt-4 bg-white shadow-md'
               : 'duration-200 opacity-0 invisible absolute z-10 rounded-sm mt-2 bg-white shadow-md'
           }
         >
-          <div className="flex flex-col px-4 pt-4 space-y-4">
+          <div className="px-4 pt-4 space-y-4">
             <button
               onClick={handleAllPositionsCheck}
-              className="flex justify-end text-sm text-cyan-500 font-raleway"
+              className="flex ml-[12.1rem] text-sm text-cyan-500 font-raleway"
             >
               {allPositionsSelected && position.length !== 0
                 ? 'Unselect all'
                 : 'Select all'}
             </button>
             {positions.map((pos) => (
-              <div
-                key={pos._id}
-                className="flex justify-between border-b pb-2 w-48"
-              >
-                <label htmlFor={pos._id} className="font-raleway">
+              <div key={pos._id} className="border-b pb-2 w-64">
+                <label
+                  htmlFor={pos._id}
+                  className="font-raleway flex justify-between"
+                >
                   {pos.title}
+                  <Checkbox
+                    id={pos._id!.toString()}
+                    onChange={handlePositionCheck}
+                    className="flex items-center ring-1 ring-gray-100 h-6 w-6 border rounded-md text-2xl"
+                    checkColor="text-cyan-color"
+                    checked={position.indexOf(pos._id!) !== -1 ? true : false}
+                    name={pos.title}
+                    value={pos._id!}
+                    checkedSingle={
+                      position.indexOf(pos._id!) !== -1 ? true : false
+                    }
+                  />
                 </label>
-                <input
-                  type="checkbox"
-                  className="mt-2 ml-2 hover:cursor-pointer"
-                  name={pos.title}
-                  id={pos._id}
-                  checked={position.indexOf(pos._id!) !== -1 ? true : false}
-                  value={pos._id!}
-                  onChange={handlePositionCheck}
-                />
               </div>
             ))}
           </div>
@@ -181,13 +187,13 @@ export default function Filters() {
         <div
           className={
             showStatusFilter
-              ? 'transition ease-in-out duration-200 opacity-100 absolute z-10 rounded-sm mt-2 bg-white shadow-md'
+              ? 'transition ease-in-out duration-200 opacity-100 absolute z-10 rounded-sm mt-4 bg-white shadow-md'
               : 'duration-200 opacity-0 invisible absolute z-10 rounded-sm mt-2 bg-white shadow-md'
           }
         >
-          <div className="flex flex-col px-4 pt-4 space-y-4">
+          <div className="px-4 pt-4 space-y-4">
             <button
-              className="flex justify-end text-sm text-cyan-500 font-raleway"
+              className="flex ml-[12.1rem] text-sm text-cyan-500 font-raleway"
               onClick={handleAllStatusCheck}
             >
               {allStatusSelected && secondary_status.length !== 0
@@ -197,30 +203,39 @@ export default function Filters() {
             {secondaryStatus.map((status) => (
               <div
                 key={status.id}
-                className="flex justify-between border-b pb-2 w-48"
+                className="flex justify-between border-b pb-2 w-64"
               >
                 <div className="flex">
                   <div
                     className={`mt-[0.3rem] w-4 h-4 rounded-xl ${status.color}`}
                   ></div>
-                  <label
-                    htmlFor={status.id.toString()}
-                    className="ml-3 font-raleway"
-                  >
+                  <span className="ml-3 font-raleway">
                     {status.displayName}
-                  </label>
+                  </span>
                 </div>
-                <input
-                  type="checkbox"
-                  className="mt-2 ml-2 hover:cursor-pointer"
-                  name={status.displayName}
-                  id={status.id.toString()}
-                  checked={
-                    secondary_status.indexOf(status.value) !== -1 ? true : false
-                  }
-                  value={status.value}
-                  onChange={handleStatusCheck}
-                />
+                <label
+                  htmlFor={status.id.toString()}
+                  className="ml-3 font-raleway"
+                >
+                  <Checkbox
+                    id={status.id.toString()}
+                    onChange={handleStatusCheck}
+                    className="flex items-center ring-1 ring-gray-100 h-6 w-6 border rounded-md text-3xl"
+                    checkColor="text-cyan-color"
+                    checked={
+                      secondary_status.indexOf(status.value) !== -1
+                        ? true
+                        : false
+                    }
+                    name={status.displayName}
+                    value={status.value}
+                    checkedSingle={
+                      secondary_status.indexOf(status.value) !== -1
+                        ? true
+                        : false
+                    }
+                  />
+                </label>
               </div>
             ))}
           </div>
