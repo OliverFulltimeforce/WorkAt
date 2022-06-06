@@ -11,10 +11,17 @@ interface Props {
 
 const FormView: React.FC<Props> = ({toggleStatus, setToggleStatus}) => {
     const suggestions:any = [
-        { id: 'python', text: 'python' },
-        { id: 'css', text: 'css' },
+        { id: 'Python', text: 'python' },
+        { id: 'Java', text: 'Java' },
+        { id: 'C++', text: 'C++' },
+        { id: 'Css', text: 'Css' },
         { id: 'Ruby', text: 'Ruby' },
-        { id: 'GO', text: 'GO' }
+        { id: 'Go', text: 'GO' },
+        { id: 'Php', text: 'GO' },
+        { id: 'TypeScript', text: 'TypeScript' },
+        { id: 'JavaScript', text: 'JavaScript' },
+        { id: 'React', text: 'React' },
+        { id: 'Kotlin', text: 'Kotlin' }
       ]
       
       const KeyCodes = {
@@ -92,6 +99,7 @@ const FormView: React.FC<Props> = ({toggleStatus, setToggleStatus}) => {
                                  handleDelete={handleDeleteIntermediate}
                                  handleAddition={handleAdditionIntermediate}
                                  allowUnique={true}
+                                 allowDragDrop={false}
                                 inputFieldPosition="top"
                                 autocomplete={true}
                                 name="advanced"
@@ -112,6 +120,7 @@ const FormView: React.FC<Props> = ({toggleStatus, setToggleStatus}) => {
                                  handleDelete={handleDeleteBasic}
                                  handleAddition={handleAdditionBasic}
                                  allowUnique={true}
+                                 allowDragDrop={false}
                                 inputFieldPosition="top"
                                 autocomplete={true}
                            />
