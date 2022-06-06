@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Text from '../inputs/Text';
 import SingleSelect from '../inputs/SingleSelect';
 import File from '../inputs/File';
-import Checkbox from '../buttons/Checkbox';
+import CheckboxApply from '../buttons/CheckboxApply';
 import Submit from '../buttons/Submit';
 import Loading from '../extras/Loading';
 import Date from '../inputs/Date';
@@ -279,7 +279,7 @@ const FrmApply: React.FC<Props> = ({ _id }) => {
           <div className="mx-auto py-5">
             <ErrorMessages errorState={candidateError} errorTerms={['pdf']} />
           </div>
-          <Checkbox
+          <CheckboxApply
             id="terms"
             classes="place-items-center"
             htmlFor="agreetment"

@@ -10,7 +10,7 @@ interface Props {
   width: string;
 }
 
-const Checkbox: React.FC<Props> = ({
+const CheckboxApply: React.FC<Props> = ({
   id,
   classes,
   direction,
@@ -48,4 +48,4 @@ const Checkbox: React.FC<Props> = ({
   );
 };
 
-export default Checkbox;
+export default CheckboxApply;
