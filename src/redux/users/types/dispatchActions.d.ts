@@ -33,12 +33,18 @@ export type ClearUserSuccessAction = {
   type: ActionTypes.CLEAR_USER_SUCCESS;
 };
 
+export type DeleteUserAction = {
+  type: ActionTypes.DELETE_USER;
+  payload: string;
+};
+
 export type Action =
   | GetUsersActions
   | SetUserInfoAction
   | SetUserLoadingAction
   | SetUserErrorAction
   | ClearUserErrorAction
+  | DeleteUserAction
   | ClearUserSuccessAction
   | SetUserSuccessAction
   | SetUserUpdatingAction;

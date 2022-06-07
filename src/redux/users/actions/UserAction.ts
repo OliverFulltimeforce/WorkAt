@@ -8,6 +8,7 @@ import {
 import {
   ClearUserErrorAction,
   ClearUserSuccessAction,
+  DeleteUserAction,
   GetUsersActions,
   SetUserErrorAction,
   SetUserInfoAction,
@@ -16,6 +17,7 @@ import {
 } from '../types/dispatchActions';
 import ClientAxios, { PrivateAxios } from '../../../config/api/axios';
 import {
+  DELETE_USER,
   GET_ALL_USERS,
   LOGIN_USER,
   LOGOUT_USER,
@@ -148,6 +150,44 @@ export function Login(
         });
       } else {
         dispatch({ type: ActionTypes.SET_IS_USER_NOT_LOADING });
+        return dispatch<SetUserErrorAction>({
+          type: ActionTypes.SET_USER_ERROR,
+          payload: error,
+        });
+      }
+    }
+  };
+}
+
+export function DeleteUser(_id: string) {
+  return async function (dispatch: Dispatch) {
+    dispatch({ type: ActionTypes.SET_IS_USER_UPDATING });
+    try {
+      const { data } = await PrivateAxios.delete(`${DELETE_USER}/${_id}`);
+
+      dispatch({ type: ActionTypes.SET_IS_USER_NOT_UPDATING });
+
+      dispatch<SetUserSuccessAction>({
+        type: ActionTypes.SET_USER_SUCCESS,
+        payload: {
+          status: 200,
+          message: data.message,
+        },
+      });
+
+      return dispatch<DeleteUserAction>({
+        type: ActionTypes.DELETE_USER,
+        payload: _id,
+      });
+    } catch (error: any) {
+      if (error.response) {
+        dispatch({ type: ActionTypes.SET_IS_USER_NOT_LOADING });
+        return dispatch<SetUserErrorAction>({
+          type: ActionTypes.SET_USER_ERROR,
+          payload: error.response.data,
+        });
+      } else {
+        dispatch({ type: ActionTypes.SET_IS_USER_NOT_UPDATING });
         return dispatch<SetUserErrorAction>({
           type: ActionTypes.SET_USER_ERROR,
           payload: error,

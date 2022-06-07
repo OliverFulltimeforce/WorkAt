@@ -104,6 +104,13 @@ function UserReducer(state = initialState, action: Action) {
       };
     }
 
+    case ActionTypes.DELETE_USER: {
+      return {
+        ...state,
+        users: state.users.filter((user) => user._id !== action.payload),
+      };
+    }
+
     default:
       return state;
   }
