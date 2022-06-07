@@ -12,6 +12,11 @@
     padding-bottom: 0.5em;
     outline: none;
     width: 100%;
+    
+}
+
+.ReactTags__tagInput > input.ReactTags__tagInputField:focus{
+  box-shadow: 0 10px 15px -3px hsla(197, 100%, 47%, 0.233), 0 4px 6px -4px hsla(0, 0%, 0%, 0.1);
 }
 
 /* Styles for selected tags */
