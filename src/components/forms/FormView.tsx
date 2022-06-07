@@ -1,4 +1,3 @@
-import { TableFooter } from '@material-ui/core'
 import { useState } from 'react'
 import {AiOutlineUp as ArrowUp, AiOutlineDown as ArrowDown} from 'react-icons/ai'
 import { WithContext as ReactTags } from 'react-tag-input'
@@ -24,40 +23,77 @@ const FormView: React.FC<Props> = ({toggleStatus, setToggleStatus}) => {
         { id: 'Kotlin', text: 'Kotlin' }
       ]
       
-      const KeyCodes = {
+    const KeyCodes = {
         comma: 188,
         enter: 13
       };
       
-      const delimiters = [KeyCodes.comma, KeyCodes.enter];
+    const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
     const [tagsAdvanced, setTagsAdvanced]:any = useState([]);
     const [tagsIntermediate, setTagsIntermediate]:any = useState([]);
     const [tagsBasic, setTagsBasic]:any = useState([]);
-    
-      const handleDeleteAdvanced = (i:any) => {
-        setTagsAdvanced(tagsAdvanced.filter((tag:any, index:any) => index !== i));
-      };
-    
-      const handleAdditionAdvanced = (tag:any) => {
-        setTagsAdvanced([...tagsAdvanced, tag]);
-      };
+    const [nameSearch, setNameSearch]:any = useState('')
+    const [statusHolder, setStatusHolder]: any = useState({
+      active: false,
+      former:false,
+      inProcess: false
+    })
 
-      const handleDeleteIntermediate = (i:any) => {
-        setTagsIntermediate(tagsIntermediate.filter((tag:any, index:any) => index !== i));
-      };
+    const handleNameSearchChange = (targetValue:any) =>{
+      setNameSearch(targetValue)
+    }
     
-      const handleAdditionIntermediate = (tag:any) => {
-        setTagsIntermediate([...tagsIntermediate, tag]);
-      };
+    const handleDeleteAdvanced = (i:any) => {
+      setTagsAdvanced(tagsAdvanced.filter((tag:any, index:any) => index !== i));
+    };
+  
+    const handleAdditionAdvanced = (tag:any) => {
+      setTagsAdvanced([...tagsAdvanced, tag]);
+    };
 
-      const handleDeleteBasic = (i:any) => {
-        setTagsBasic(tagsBasic.filter((tag:any, index:any) => index !== i));
-      };
-    
-      const handleAdditionBasic = (tag:any) => {
-        setTagsBasic([...tagsBasic, tag]);
-      };
+    const handleDeleteIntermediate = (i:any) => {
+      setTagsIntermediate(tagsIntermediate.filter((tag:any, index:any) => index !== i));
+    };
+  
+    const handleAdditionIntermediate = (tag:any) => {
+      setTagsIntermediate([...tagsIntermediate, tag]);
+    };
+
+    const handleDeleteBasic = (i:any) => {
+      setTagsBasic(tagsBasic.filter((tag:any, index:any) => index !== i));
+    };
+  
+    const handleAdditionBasic = (tag:any) => {
+      setTagsBasic([...tagsBasic, tag]);
+    };
+
+    const cleanFilters = () => {
+      setTagsAdvanced([])
+      setTagsIntermediate([])
+      setTagsBasic([])
+      setNameSearch('')
+      setStatusHolder({
+        active: false,
+        former:false,
+        inProcess: false
+      })
+    }
+
+    const handleStatusChange = (name:any) =>{
+      setStatusHolder({
+        ...statusHolder,
+        [name]: !statusHolder[name]
+      })
+    }
+
+    const selectAllStatus = () => {
+      setStatusHolder({
+        active: true,
+        former: true,
+        inProcess: true
+      })
+    }
   
   return (
     <div className="flex flex-col mx-20 border-2 rounded-3xl">
@@ -149,7 +185,12 @@ const FormView: React.FC<Props> = ({toggleStatus, setToggleStatus}) => {
                         <div className="flex flex-col w-2/6 relative">
                             <div className="h-1/3 text-[#475564] mb-1">Search by Name:</div>
                             <span className="absolute mt-9 mx-5 text-xs text-[#475564]"></span>
-                            <input className="bg-light-color w-full h-16 px-5 pt-3.5 border-none rounded-2xl outline-none focus:shadow-lg focus:shadow-[#C3EBFB]" placeholder="Name"/>
+                            <input 
+                              className="bg-light-color w-full h-16 px-5 pt-3.5 border-none rounded-2xl outline-none focus:shadow-lg focus:shadow-[#C3EBFB]" 
+                              placeholder="Name"
+                              value={nameSearch}
+                              onChange={(e)=>handleNameSearchChange(e.target.value)}
+                            />
                        </div>
 
                        <div className="w-2/6 mt-8 flex  items-center  select-none relative">
@@ -158,7 +199,12 @@ const FormView: React.FC<Props> = ({toggleStatus, setToggleStatus}) => {
                                 <li className=" flex flex-end items-center justify-center text-xs right-0 text-[#00ADEF]">
 
                                    <span className="w-4/6 text-[#475564] font-semibold"></span>
-                                   <span className=" w2/6 cursor-pointer">Select all</span>
+                                   <span 
+                                    className=" w2/6 cursor-pointer"
+                                    onClick={()=>selectAllStatus()}  
+                                  >
+                                      Select all
+                                    </span>
                                   
                                 </li>
                     
@@ -166,19 +212,37 @@ const FormView: React.FC<Props> = ({toggleStatus, setToggleStatus}) => {
                                     <span className="w-5/6 text-[#00ADEF] font-semibold">
                                         Active
                                     </span>
-                                    <input className="cursor-pointer" type="checkbox"/>
+                                    <input 
+                                      className="cursor-pointer" 
+                                      type="checkbox" 
+                                      name='active'
+                                      checked={statusHolder.active}
+                                      onChange={(e)=>handleStatusChange(e.target.name)}
+                                    />
                                 </li>
                                 <li className="flex flex-end items-center border-b-2 pb-2 pt-2">
                                     <span className="w-5/6 text-[#475564] font-semibold">
                                         Former
                                     </span>
-                                    <input className="cursor-pointer" type="checkbox"/>
+                                    <input 
+                                      className="cursor-pointer" 
+                                      type="checkbox" 
+                                      name='former'
+                                      checked={statusHolder.former}
+                                      onChange={(e)=>handleStatusChange(e.target.name)}
+                                    />
                                 </li>
                                 <li className="flex flex-end items-center border-b-2 pb-2 pt-2">
                                     <span className="w-5/6 text-[#475564] font-normal">
                                         In Process
                                     </span>
-                                    <input className="cursor-pointer" type="checkbox"/>
+                                    <input 
+                                      className="cursor-pointer"
+                                      type="checkbox" 
+                                      checked={statusHolder.inProcess}
+                                      name='inProcess'
+                                      onChange={(e)=>handleStatusChange(e.target.name)}
+                                    />
                                 </li>
                                 <li onClick={()=>setToggleStatus(!toggleStatus)} className="font-semibold pt-4 pb-2 cursor-pointer hover:text-[#00ADEF]">
                                     Apply
@@ -191,7 +255,12 @@ const FormView: React.FC<Props> = ({toggleStatus, setToggleStatus}) => {
                                 {toggleStatus ? <ArrowUp/>: <ArrowDown/>}  
                             </div>
 
-                            <div className="text-[#50C7F4] cursor-pointer select-none">Clean filters</div>
+                            <div 
+                              className="text-[#50C7F4] cursor-pointer select-none font-semibold hover:text-[#9CA3AF]"
+                              onClick={()=>cleanFilters()}
+                            >
+                              Clean filters
+                            </div>
                        </div>
                        <div className="w-2/6 ">
                             <span className="h-1/3"></span>
