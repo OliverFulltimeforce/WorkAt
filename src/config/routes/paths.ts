@@ -22,6 +22,7 @@ export const VIEW_EDIT_POSITION = '/admin/dashboard/open-positions/edit';
 export const VIEW_USER_DIALOG = '/admin/dashboard/candidate-status/details';
 export const VIEW_EXPERT = '/admin/dashboard/expert-view';
 export const VIEW_COMPARING = '/admin/dashboard/comparing-view';
+export const VIEW_USERS = '/admin/dashboard/users';
 
 /* PATH TO LOGIN */
 export const VIEW_LOGIN = '/login';

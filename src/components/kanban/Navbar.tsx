@@ -7,6 +7,7 @@ import {
   VIEW_KANBAN,
   VIEW_OPEN_POSITIONS,
   VIEW_PROFILE,
+  VIEW_USERS,
 } from '../../config/routes/paths';
 import { LogOut } from '../../redux/users/actions/UserAction';
 import { getStorageItem } from '../../utils/localStorage';
@@ -27,6 +28,8 @@ export default function Navbar() {
   const handleLogout = () => {
     dispatch(LogOut());
   };
+
+  const isAdmin = true;
 
   const handleProfileNavigate = () => {
     navigate(VIEW_PROFILE);
@@ -70,6 +73,7 @@ export default function Navbar() {
         <div className="text-lg text-white mr-16 font-light">
           <ul className="flex divide-x divide-solid">
             <NavItem to={VIEW_OPEN_POSITIONS} text="Open Positions" />
+            {isAdmin ? <NavItem to={VIEW_USERS} text="Users" /> : null}
             <NavItem to={VIEW_KANBAN} text="Candidates Status" />
             <NavItem to={VIEW_EXPERT} text="Expert" />
           </ul>

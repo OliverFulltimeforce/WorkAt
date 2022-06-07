@@ -38,6 +38,7 @@ const Modal: React.FC<Props> = ({
   const updatingPosition = useSelector(
     (state: State) => state.positions.updating,
   );
+  const updatingUser = useSelector((state: State) => state.user.updating);
 
   return (
     <Transition.Root show={value} as={Fragment}>
@@ -119,7 +120,7 @@ const Modal: React.FC<Props> = ({
                   className="flex items-center justify-center w-[132px] h-[54px] rounded-[10px] border border-cyan-color px-4 py-2 bg-cyan-color text-[15px] font-bold text-white focus:outline-none"
                   onClick={isVerify}
                 >
-                  {updatingCandidate || updatingPosition ? (
+                  {updatingCandidate || updatingPosition || updatingUser ? (
                     <LoaderSpinner
                       height="h-7"
                       width="w-7"
