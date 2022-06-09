@@ -54,18 +54,6 @@
   border-color: rgb(0 173 239 / var(--tw-border-opacity));
 }
 
-.chip img {
-  content: url("https://res.cloudinary.com/dgixckrvq/image/upload/v1650313078/portfolio/FTF/close_kxumee.svg");
-}
-
-.closeIcon {
-  height: 7px;
-  width: 7px;
-  float: right;
-  margin-left: 5px;
-  cursor: pointer;
-}
-
 .optionListContainer {
   margin-top: 5px;
   border: 1px solid $light-gray;
