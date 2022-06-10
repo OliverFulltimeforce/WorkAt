@@ -7,6 +7,7 @@ import {
   VIEW_CREATE_NEW_POSITION,
   VIEW_EDIT_POSITION,
   VIEW_PROFILE,
+  VIEW_USERS,
 } from './paths';
 import CandidateStatus from '../../views/admin/dashboard/CandidateStatus/CandidateStatus';
 import Navbar from '../../components/kanban/Navbar';
@@ -16,6 +17,7 @@ import PrivateRoute from '../../components/Routes/PrivateRoute';
 import ExpertView from '../../views/admin/dashboard/ExpertView/ExpertView';
 import ComparingView from '../../views/admin/dashboard/ExpertView/ComparingView';
 import Profile from '../../views/admin/dashboard/Profile/Profile';
+import Users from '../../views/admin/dashboard/Users/Users';
 
 export default function AdminRoutes() {
   return (
@@ -27,6 +29,14 @@ export default function AdminRoutes() {
           element={
             <PrivateRoute>
               <CandidateStatus />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={VIEW_USERS}
+          element={
+            <PrivateRoute>
+              <Users />
             </PrivateRoute>
           }
         />
@@ -74,7 +84,7 @@ export default function AdminRoutes() {
           path={VIEW_COMPARING}
           element={
             <PrivateRoute>
-              <ComparingView/>
+              <ComparingView />
             </PrivateRoute>
           }
         />

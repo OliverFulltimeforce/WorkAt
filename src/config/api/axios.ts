@@ -14,7 +14,7 @@ const accessToken = getStorageItem('access', true);
 
 const refresh = async () => {
   try {
-    const { data } = await PrivateAxios.post<RefreshTokenResponse>(
+    const { data } = await PrivateAxios.post<RefreshTokenResponse>( // replace REFRESH_TOKENS with your refresh token API endpoint.
       REFRESH_TOKENS
     );
     setStorage({ access: data.accessToken });
@@ -23,6 +23,7 @@ const refresh = async () => {
   } catch (error: any) {
     if (error.response) {
       if (error.response.status === 401 || error.response.status === 400) {
+        // you can create your own logic when the refresh token is invalid. Suggestion would be to logout the user and inform them that their session has expired
         dispatch(LogOut());
         setStorage({
           refresh_error: "Your session has expired. Please login again.",
@@ -50,6 +51,7 @@ const PrivateAxios = axios.create({
       : "https://fulltimeforce-video-interview.herokuapp.com",
 });
 
+// config to set access token in headers before every request if not present already. Also add config for sending cookies in-between requests.
 PrivateAxios.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     if (!config.headers!["Authorization"]) {
@@ -61,6 +63,7 @@ PrivateAxios.interceptors.request.use(
   (error: any) => Promise.reject(error)
 );
 
+// config to check if a request failed with 401 status, and if so, refresh the access token and retry the original request.
 PrivateAxios.interceptors.response.use(
   (response: AxiosResponse) => response,
   async (error) => {

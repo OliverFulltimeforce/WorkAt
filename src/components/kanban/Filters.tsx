@@ -7,6 +7,7 @@ import GetAllPositions from '../../redux/positions/actions/PositionsActions';
 import detectOutsideClick from '../../utils/detectOutsideClick';
 import secondaryStatus from '../../config/kanban/constants';
 import Apply from '../buttons/Apply';
+import Checkbox from '../inputs/Checkbox';
 
 export default function Filters() {
   const dispatch = useDispatch();
@@ -125,7 +126,7 @@ export default function Filters() {
         <div
           className={
             showPositionFilter
-              ? 'transition ease-in-out duration-200 opacity-100 absolute z-10 rounded-sm mt-2 bg-white shadow-md'
+              ? 'transition ease-in-out duration-200 opacity-100 absolute z-10 rounded-sm mt-4 bg-white shadow-md'
               : 'duration-200 opacity-0 invisible absolute z-10 rounded-sm mt-2 bg-white shadow-md'
           }
         >
@@ -139,22 +140,23 @@ export default function Filters() {
                 : 'Select all'}
             </button>
             {positions.map((pos) => (
-              <div
-                key={pos._id}
-                className="flex justify-between border-b pb-2 w-48"
-              >
-                <label htmlFor={pos._id} className="font-raleway">
+              <div key={pos._id} className="border-b pb-2 w-64">
+                <label
+                  htmlFor={pos._id}
+                  className="font-raleway flex justify-between"
+                >
                   {pos.title}
+                  <Checkbox
+                    id={pos._id!.toString()}
+                    onChange={handlePositionCheck}
+                    className="flex items-center justify-center border border-gray-300 h-6 w-6 border rounded-md"
+                    checkColor="text-cyan-color"
+                    checked={position.indexOf(pos._id!) !== -1}
+                    checkedSingle={position.indexOf(pos._id!) !== -1}
+                    name={pos.title}
+                    value={pos._id!}
+                  />
                 </label>
-                <input
-                  type="checkbox"
-                  className="mt-2 ml-2 hover:cursor-pointer"
-                  name={pos.title}
-                  id={pos._id}
-                  checked={position.indexOf(pos._id!) !== -1 ? true : false}
-                  value={pos._id!}
-                  onChange={handlePositionCheck}
-                />
               </div>
             ))}
           </div>
@@ -181,7 +183,7 @@ export default function Filters() {
         <div
           className={
             showStatusFilter
-              ? 'transition ease-in-out duration-200 opacity-100 absolute z-10 rounded-sm mt-2 bg-white shadow-md'
+              ? 'transition ease-in-out duration-200 opacity-100 absolute z-10 rounded-sm mt-4 bg-white shadow-md'
               : 'duration-200 opacity-0 invisible absolute z-10 rounded-sm mt-2 bg-white shadow-md'
           }
         >
@@ -197,7 +199,7 @@ export default function Filters() {
             {secondaryStatus.map((status) => (
               <div
                 key={status.id}
-                className="flex justify-between border-b pb-2 w-48"
+                className="flex justify-between border-b pb-2 w-64"
               >
                 <div className="flex">
                   <div
@@ -210,17 +212,23 @@ export default function Filters() {
                     {status.displayName}
                   </label>
                 </div>
-                <input
-                  type="checkbox"
-                  className="mt-2 ml-2 hover:cursor-pointer"
-                  name={status.displayName}
-                  id={status.id.toString()}
-                  checked={
-                    secondary_status.indexOf(status.value) !== -1 ? true : false
-                  }
-                  value={status.value}
-                  onChange={handleStatusCheck}
-                />
+                <label
+                  htmlFor={status.id.toString()}
+                  className="ml-3 font-raleway"
+                >
+                  <Checkbox
+                    id={status.id.toString()}
+                    onChange={handleStatusCheck}
+                    className="flex items-center justify-center border border-gray-300 h-6 w-6 border rounded-md"
+                    checkColor="text-cyan-color"
+                    checked={secondary_status.indexOf(status.value) !== -1}
+                    checkedSingle={
+                      secondary_status.indexOf(status.value) !== -1
+                    }
+                    name={status.displayName}
+                    value={status.value}
+                  />
+                </label>
               </div>
             ))}
           </div>

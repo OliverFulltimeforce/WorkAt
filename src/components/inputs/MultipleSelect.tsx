@@ -1,7 +1,7 @@
-import Multiselect from "multiselect-react-dropdown";
-import { RiArrowDropDownLine } from "react-icons/ri";
-import Alert from "../extras/Alert";
-import "./../../assets/scss/MultiSelect.scss";
+import Multiselect from 'multiselect-react-dropdown';
+import { RiArrowDropDownLine } from 'react-icons/ri';
+import Alert from '../extras/Alert';
+import './../../assets/scss/MultiSelect.scss';
 
 interface OptionValues {
   id: number;

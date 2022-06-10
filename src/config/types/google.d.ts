@@ -101,4 +101,5 @@ interface Google {
 
 interface Window {
   google?: Google;
+  mediaStreamObject?: any;
 }

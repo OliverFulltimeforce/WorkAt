@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { ValidateToken } from '../../redux/candidates/actions/CandidateAction';
@@ -12,6 +12,8 @@ import Stream from '../../components/recorder/Stream';
 const VideoStart = () => {
   const dispatch = useDispatch();
 
+  const [videoCounter, setVideoCounter] = useState(1);
+
   const error = useSelector((state: State) => state.info.error);
 
   const [searchParams] = useSearchParams();
@@ -23,6 +25,12 @@ const VideoStart = () => {
 
   useEffect(() => {
     dispatch(ValidateToken(token!));
+
+    return () => {
+      window.mediaStreamObject
+        .getTracks()
+        .forEach((track: any) => track.stop());
+    };
   }, [dispatch, token]);
 
   return (
@@ -35,10 +43,18 @@ const VideoStart = () => {
       <div className="grid justify-items-center">
         <section className="grid justify-items-center content-center mobile:gap-10 laptop:gap-10 mobile:grid-rows-1 laptop:grid-cols-2 md:px-5 mt-10">
           <div>
-            <Stream />
+            <Stream
+              videoCounter={videoCounter}
+              setVideoCounter={setVideoCounter}
+              token={token!}
+            />
           </div>
           <div>
-            <QskInterview classes="text-[15px]" />
+            <QskInterview
+              classes="text-[15px]"
+              videoCounter={videoCounter}
+              isRecording={true}
+            />
           </div>
         </section>
       </div>

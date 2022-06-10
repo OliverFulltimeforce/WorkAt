@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import Webcam from "react-webcam";
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import Webcam from 'react-webcam';
 
 interface Props {
   webcamRef?: any;
@@ -24,14 +24,14 @@ const CameraOn: React.FC<Props> = ({ webcamRef, isCameraOn, init }) => {
       await init(constraints);
     };
     onClick();
-  }, []);
+  }, [init]);
 
   return (
     <div
       className={`${
         isCameraOn
-          ? ""
-          : "bg-light-color border-light-color rounded-2xl laptop:w-[400px] laptop:h-[320px] mobile:w-[333px] mobile:h-[266px]"
+          ? ''
+          : 'bg-light-color border-light-color rounded-2xl laptop:w-[400px] laptop:h-[320px] mobile:w-[333px] mobile:h-[266px]'
       } relative`}
     >
       <div className="z-10">
@@ -39,11 +39,11 @@ const CameraOn: React.FC<Props> = ({ webcamRef, isCameraOn, init }) => {
       </div>
       <div
         className={`${
-          !isCameraOn ? "block" : "hidden"
+          !isCameraOn ? 'block' : 'hidden'
         } absolute laptop:top-[145px] laptop:left-[115px] mobile:top-[115px] mobile:left-[85px]`}
       >
         <span className="font-raleway text-gray-color text-xs">
-          {t("details.turn_camera")}
+          {t('details.turn_camera')}
         </span>
       </div>
     </div>

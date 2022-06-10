@@ -1,47 +1,48 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-export function UseCounter() {
+export function useCounter() {
   const [time, setTime] = useState({ minute: 0, second: 0 });
+  const [intervalWatch, setIntervalWatch] = useState<any>();
   let [progress, setProgress] = useState(0);
 
-  let timer: any;
-
-  const startTimer = () => {
-    timer = setInterval(countDown, 1000);
-  };
-
-  let updatedS = time.second;
+  let updatedS = time.second - 1;
   let updatedM = time.minute;
 
   const countDown = () => {
     if (updatedM === 2) {
       updatedM = 0;
     }
-    if (updatedS === 60) {
+    if (updatedS === 59) {
       updatedM++;
       updatedS = 0;
     }
     updatedS++;
-    setProgress((progress += 1));
+    setProgress(progress++);
     return setTime({ minute: updatedM, second: updatedS });
   };
 
-  const pauseTimer = () => {
-    clearInterval(timer);
+  const startTimer = () => {
+    countDown();
+    setIntervalWatch(setInterval(countDown, 1000));
+  };
+
+  const stopTimer = () => {
+    clearInterval(intervalWatch);
   };
 
   const resumeTimer = () => startTimer();
 
   const resetTimer = () => {
-    setTime({ minute: 0, second: 0 });
     setProgress(0);
+    setTime({ minute: 0, second: 0 });
   };
 
   return {
     time,
+    setTime,
     progress,
     startTimer,
-    pauseTimer,
+    stopTimer,
     resumeTimer,
     resetTimer,
   };

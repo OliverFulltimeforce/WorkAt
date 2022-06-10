@@ -12,8 +12,7 @@ export type InitialState = {
     description: string;
     video: string;
   };
-  userId: any;
-  isUserEdit: boolean;
+  toEdit: boolean;
   loading: boolean;
   updating: boolean;
   detailFinishedLoading: boolean;

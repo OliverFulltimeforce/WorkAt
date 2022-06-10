@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 /* Components */
@@ -22,8 +22,8 @@ import Coins from '../../assets/json/Coin.json';
 import { State } from '../../redux/store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  AddCandidate,
-  DataSaveEdit,
+  ClearCandidateSuccess,
+  UpdateCandidateInfo,
 } from '../../redux/candidates/actions/CandidateAction';
 import MultipleSelect from '../inputs/MultipleSelect';
 
@@ -54,28 +54,33 @@ const FrmData: React.FC<Props> = ({ token }) => {
 
   const candidateDetail = useSelector((state: State) => state.info.detail);
 
-  const DataToEdit = useSelector((state: any) => state.info.user);
-  const toEdit = useSelector((state: any) => state.info.isToEdit);
-  const userID = useSelector((state: any) => state.info.userId);
+  const { _id } = candidateDetail;
 
   /* States from the component */
   let [college, setCollege] = useState({ id: 0, name: '' });
   let [currency, setCurrency] = useState({ id: 0, name: '' });
   let [salary, setSalary] = useState('');
   let [available, setAvailable] = useState({ id: 0, name: '' });
-  let [skill, setSkill] = useState<string | Blob>('');
+  let [skill, setSkill] = useState<{ id: number; name: string }[]>([]);
   let [description, setDescription] = useState('');
 
   /* Values which will be validated */
   const [isCollegeValid, setIsCollegeValid] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isCurrencyValid, setIsCurrencyValid] = useState(false);
   const [isSalaryValid, setIsSalaryValid] = useState(false);
   const [isSkillValid, setIsSkillValid] = useState(false);
 
+  /* GET EDIT DATA TOGGLE */
+  const [searchParams] = useSearchParams();
+  const toEdit = searchParams.get('edit');
+
   /*  */
-  const AddNewCandidate = (user: any) => dispatch(AddCandidate(user));
-  const EditDataCandidate = (user: any) => dispatch(DataSaveEdit(user, userID));
-  const loading = useSelector((state: any) => state.info.loading);
+  const AddNewCandidate = (user: any) =>
+    dispatch(UpdateCandidateInfo(_id, user));
+
+  const loading = useSelector((state: State) => state.info.loading);
+  const success = useSelector((state: State) => state.info.success);
 
   /* Function to store validation */
   const isFormValid = () => {
@@ -84,14 +89,6 @@ const FrmData: React.FC<Props> = ({ token }) => {
     salary === '' ? setIsSalaryValid(true) : setIsSalaryValid(false);
     !skill ? setIsSkillValid(true) : setIsSkillValid(false);
   };
-
-  /* FORM DATA */
-  const formData = new FormData();
-  formData.append('academic_training', college.name);
-  formData.append('salary_expectations', salary);
-  formData.append('available_from', available.name);
-  formData.append('skill', skill);
-  formData.append('working_reason', description);
 
   /* OnSubmit */
   const onSubmit = (evt: any) => {
@@ -102,8 +99,15 @@ const FrmData: React.FC<Props> = ({ token }) => {
     if (!college || !currency || !salary || !skill) {
       return;
     } else {
-      AddNewCandidate(formData);
-      navigate(`${VIEW_DETAILS}?token=${token}`);
+      let skills = skill.map((skill) => skill.name);
+
+      AddNewCandidate({
+        academic_training: college.name,
+        available_from: available.name,
+        skills,
+        salary_expectations: `${currency.name} ${salary}`,
+        working_reason: description,
+      });
     }
   };
 
@@ -115,21 +119,72 @@ const FrmData: React.FC<Props> = ({ token }) => {
     if (!salary || !skill) {
       return;
     } else {
-      EditDataCandidate(formData);
-      navigate(VIEW_VIDEO_COMPLETED);
+      let skills = skill.map((skill) => skill.name);
+
+      AddNewCandidate({
+        academic_training: college.name,
+        available_from: available.name,
+        skills,
+        salary_expectations: `${currency.name} ${salary}`,
+        working_reason: description,
+      });
     }
   };
 
   const handleCancelClick = () => {
-    navigate(VIEW_VIDEO_COMPLETED);
+    navigate(`${VIEW_VIDEO_COMPLETED}?token=${token}`);
   };
 
   const name = candidateDetail.name;
 
+  useEffect(() => {
+    if (toEdit === 'true') {
+      const collegeToEdit = training.find(
+        (t) => t.name === candidateDetail.academic_training,
+      );
+
+      const currencyToEdit = coins.find(
+        (c) => c.name === candidateDetail.salary_expectations.split(' ')[0],
+      );
+
+      const availableToEdit = time.find(
+        (t) => t.name === candidateDetail.available_from,
+      );
+
+      const skillsToEdit = candidateDetail.skills.reduce(
+        (prev: any, skill: any) => {
+          return [...prev, { id: 0, name: skill }];
+        },
+        [],
+      );
+
+      setDescription(candidateDetail.working_reason);
+      setCollege(collegeToEdit!);
+      setSalary(candidateDetail.salary_expectations.split(' ')[1]);
+      setCurrency(currencyToEdit!);
+      setAvailable(availableToEdit!);
+      setSkill(skillsToEdit!);
+    }
+  }, [toEdit, candidateDetail, coins, training, time]);
+
+  useEffect(() => {
+    if (!loading && success.message !== '' && toEdit === 'true') {
+      navigate(`${VIEW_VIDEO_COMPLETED}?token=${token}`);
+    } else if (!loading && success.message !== '' && !toEdit) {
+      navigate(`${VIEW_DETAILS}?token=${token}`);
+    }
+  }, [loading, success, toEdit, token, navigate]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(ClearCandidateSuccess(dispatch));
+    };
+  }, [dispatch]);
+
   return (
     <section className="grid place-items-center h-full mt-10 bg-white mobile:p-5">
       <h2 className="font-raleway text-gray-color mobile:text-sm laptop:text-xl mb-3 mobile:w-full laptop:w-9/12 tablet:w-11/12">
-        Hello, {name}
+        {t('greetings')}, {name}
       </h2>
       <section className="laptop:w-9/12 mobile:w-full tablet:w-11/12 bg-white">
         <div className="flex flex-wrap -mx-3">

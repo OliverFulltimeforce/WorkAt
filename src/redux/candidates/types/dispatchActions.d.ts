@@ -29,6 +29,15 @@ export type UpdateCandidateStatusAction = {
   };
 };
 
+export type UpdateCandidateInfoAction = {
+  type: ActionTypes.UPDATE_CANDIDATE_INFO;
+  payload: ICandidate;
+};
+
+export type SetToEditInfoAction = {
+  type: ActionTypes.SET_TO_EDIT_INFO;
+};
+
 export type CleanCandidateSuccessAction = {
   type: ActionTypes.CLEAR_CANDIDATE_SUCCESS;
 };
@@ -115,11 +124,13 @@ export type Action =
   | GetCandidatesAction
   | GetCandidatesFilteredAction
   | NotFoundWithFilers
+  | SetToEditInfoAction
   | SetCandidateLoadingAction
   | CreateCandidateAction
   | SetCandidateErrorAction
   | ClearCandidateErrorAction
   | UpdateCandidateStatusAction
+  | UpdateCandidateInfoAction
   | GetCandidateInfoAction
   | SetCurrentFiltersAction
   | CleanFiltersAction

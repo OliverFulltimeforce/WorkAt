@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { UpdateCandidateConclusion } from '../../../../redux/candidates/actions/CandidateAction';
 import { State } from '../../../../redux/store/store';
 import { IConclusionInv } from '../../../../redux/candidates/types/data';
+import { getStorageItem } from '../../../../utils/localStorage';
 
 const Conclusion = () => {
   /*  */
@@ -24,9 +25,7 @@ const Conclusion = () => {
 
   const { _id, name, conclusions, main_status } = currentCandidate;
 
-  const currentUser = window.localStorage.getItem('user')
-    ? JSON.parse(window.localStorage.getItem('user') as string)
-    : null;
+  const currentUser = getStorageItem('user');
 
   const onSubmit = (evt: any) => {
     evt.preventDefault();

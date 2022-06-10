@@ -6,6 +6,9 @@ import {
   UpdateUserInfoResponse,
 } from '../types/axiosResponses';
 import {
+  ClearUserErrorAction,
+  ClearUserSuccessAction,
+  DeleteUserAction,
   GetUsersActions,
   SetUserErrorAction,
   SetUserInfoAction,
@@ -14,6 +17,7 @@ import {
 } from '../types/dispatchActions';
 import ClientAxios, { PrivateAxios } from '../../../config/api/axios';
 import {
+  DELETE_USER,
   GET_ALL_USERS,
   LOGIN_USER,
   LOGOUT_USER,
@@ -155,6 +159,44 @@ export function Login(
   };
 }
 
+export function DeleteUser(_id: string) {
+  return async function (dispatch: Dispatch) {
+    dispatch({ type: ActionTypes.SET_IS_USER_UPDATING });
+    try {
+      const { data } = await PrivateAxios.delete(`${DELETE_USER}/${_id}`);
+
+      dispatch({ type: ActionTypes.SET_IS_USER_NOT_UPDATING });
+
+      dispatch<SetUserSuccessAction>({
+        type: ActionTypes.SET_USER_SUCCESS,
+        payload: {
+          status: 200,
+          message: data.message,
+        },
+      });
+
+      return dispatch<DeleteUserAction>({
+        type: ActionTypes.DELETE_USER,
+        payload: _id,
+      });
+    } catch (error: any) {
+      if (error.response) {
+        dispatch({ type: ActionTypes.SET_IS_USER_NOT_LOADING });
+        return dispatch<SetUserErrorAction>({
+          type: ActionTypes.SET_USER_ERROR,
+          payload: error.response.data,
+        });
+      } else {
+        dispatch({ type: ActionTypes.SET_IS_USER_NOT_UPDATING });
+        return dispatch<SetUserErrorAction>({
+          type: ActionTypes.SET_USER_ERROR,
+          payload: error,
+        });
+      }
+    }
+  };
+}
+
 export function LogOut() {
   return async function (_dispatch: Dispatch) {
     cleanStorage();
@@ -163,4 +205,14 @@ export function LogOut() {
 
     window.location.assign(VIEW_LOGIN);
   };
+}
+
+export function ClearUserError(dispatch: Dispatch) {
+  return dispatch<ClearUserErrorAction>({ type: ActionTypes.CLEAR_USER_ERROR });
+}
+
+export function ClearUserSuccess(dispatch: Dispatch) {
+  return dispatch<ClearUserSuccessAction>({
+    type: ActionTypes.CLEAR_USER_SUCCESS,
+  });
 }

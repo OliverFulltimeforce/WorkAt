@@ -83,6 +83,34 @@ function UserReducer(state = initialState, action: Action) {
         authenticated: true,
       };
     }
+
+    case ActionTypes.CLEAR_USER_ERROR: {
+      return {
+        ...state,
+        error: {
+          status: 400,
+          message: '',
+        },
+      };
+    }
+
+    case ActionTypes.CLEAR_USER_SUCCESS: {
+      return {
+        ...state,
+        success: {
+          status: 200,
+          message: '',
+        },
+      };
+    }
+
+    case ActionTypes.DELETE_USER: {
+      return {
+        ...state,
+        users: state.users.filter((user) => user._id !== action.payload),
+      };
+    }
+
     default:
       return state;
   }
