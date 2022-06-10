@@ -130,10 +130,10 @@ export default function Filters() {
               : 'duration-200 opacity-0 invisible absolute z-10 rounded-sm mt-2 bg-white shadow-md'
           }
         >
-          <div className="px-4 pt-4 space-y-4">
+          <div className="flex flex-col px-4 pt-4 space-y-4">
             <button
               onClick={handleAllPositionsCheck}
-              className="flex ml-[12.1rem] text-sm text-cyan-500 font-raleway"
+              className="flex justify-end text-sm text-cyan-500 font-raleway"
             >
               {allPositionsSelected && position.length !== 0
                 ? 'Unselect all'
@@ -189,9 +189,9 @@ export default function Filters() {
               : 'duration-200 opacity-0 invisible absolute z-10 rounded-sm mt-2 bg-white shadow-md'
           }
         >
-          <div className="px-4 pt-4 space-y-4">
+          <div className="flex flex-col px-4 pt-4 space-y-4">
             <button
-              className="flex ml-[12.1rem] text-sm text-cyan-500 font-raleway"
+              className="flex justify-end text-sm text-cyan-500 font-raleway"
               onClick={handleAllStatusCheck}
             >
               {allStatusSelected && secondary_status.length !== 0
