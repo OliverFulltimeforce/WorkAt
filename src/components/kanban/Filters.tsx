@@ -151,12 +151,10 @@ export default function Filters() {
                     onChange={handlePositionCheck}
                     className="flex items-center justify-center border border-gray-300 h-6 w-6 border rounded-md"
                     checkColor="text-cyan-color"
-                    checked={position.indexOf(pos._id!) !== -1 ? true : false}
+                    checked={position.indexOf(pos._id!) !== -1}
+                    checkedSingle={position.indexOf(pos._id!) !== -1}
                     name={pos.title}
                     value={pos._id!}
-                    checkedSingle={
-                      position.indexOf(pos._id!) !== -1 ? true : false
-                    }
                   />
                 </label>
               </div>
@@ -207,9 +205,12 @@ export default function Filters() {
                   <div
                     className={`mt-[0.3rem] w-4 h-4 rounded-xl ${status.color}`}
                   ></div>
-                  <span className="ml-3 font-raleway">
+                  <label
+                    htmlFor={status.id.toString()}
+                    className="ml-3 font-raleway"
+                  >
                     {status.displayName}
-                  </span>
+                  </label>
                 </div>
                 <label
                   htmlFor={status.id.toString()}
@@ -220,18 +221,12 @@ export default function Filters() {
                     onChange={handleStatusCheck}
                     className="flex items-center justify-center border border-gray-300 h-6 w-6 border rounded-md"
                     checkColor="text-cyan-color"
-                    checked={
+                    checked={secondary_status.indexOf(status.value) !== -1}
+                    checkedSingle={
                       secondary_status.indexOf(status.value) !== -1
-                        ? true
-                        : false
                     }
                     name={status.displayName}
                     value={status.value}
-                    checkedSingle={
-                      secondary_status.indexOf(status.value) !== -1
-                        ? true
-                        : false
-                    }
                   />
                 </label>
               </div>

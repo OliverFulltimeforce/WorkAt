@@ -1,145 +1,146 @@
 {
-    "data": {
-        "name": {
-            "placeholder": "Nombre",
-            "label": "Nombre completo:"
-        },
-        "email": {
-            "placeholder": "Correo electrónico",
-            "label": "Email:"
-        },
-        "birth": {
-            "placeholder": "dd/mm/aaaa",
-            "label": "Fecha de nacimiento"
-        },
-        "phone": {
-            "placeholder": "Teléfono",
-            "label": "Teléfono:"
-        },
-        "idiom": {
-            "placeholder": "Nivel de inglés",
-            "label": "Nivel de inglés"
-        },
-        "nation": {
-            "placeholder": "País",
-            "label": "País"
-        },
-        "linkedin": {
-            "placeholder": "Linkedin link",
-            "label": "Linkedin:"
-        },
-        "portfolio": {
-            "placeholder": "Portfolio link",
-            "label": "Portfolio Link"
-        }
+  "data": {
+    "name": {
+      "placeholder": "Nombre",
+      "label": "Nombre completo:"
     },
-    "applying": "Usted está postulando a",
-    "job_title": "{{job_title}}",
-    "thank_you_title": "Su aplicación ha sido enviada!",
-    "thank_you_description": {
-        "part_1": "Agradecemos su tiempo e interés,",
-        "part_2": "Nos comunicaremos con usted"
+    "email": {
+      "placeholder": "Correo electrónico",
+      "label": "Email:"
     },
-    "thank_you_video": {
-        "title": "¡Gracias!",
-        "description": {
-            "line_1": "Gracias por postular. Evaluaremos su solicitud",
-            "line_2": "y nos pondremos en contacto con usted para informarle los siguientes pasos"
-        }
+    "birth": {
+      "placeholder": "dd/mm/aaaa",
+      "label": "Fecha de nacimiento"
     },
-    "file_title": "Subir CV",
-    "term_description": {
-        "line_1": "Debe aceptar los",
-        "line_2": " términos y condiciones"
+    "phone": {
+      "placeholder": "Teléfono",
+      "label": "Teléfono:"
     },
-    "welcome": "¡Bienvenido!",
-    "slider": {
-        "description": "Para este proceso tendrás que realizar algunos pasos:"
+    "idiom": {
+      "placeholder": "Nivel de inglés",
+      "label": "Nivel de inglés"
     },
-    "instructions": {
-        "title": "Otras cosas que hay que saber",
-        "rules": {
-            "part_1": "Necesitará unos 10 minutos para rellenar esta solicitud",
-            "part_2": "Tendrá 2 minutos para grabar cada respuesta.",
-            "part_3": "Puedes grabar cada respuesta tantas veces como quieras. Asegúrate de que estás cómodo con el resultado.",
-            "extra": {
-                "l1": "Puedes grabar cada respuesta tantas veces como quieras.",
-                "l2": "Asegúrate de que estás cómodo con el resultado."
-            }
-        },
-        "are_you_ready": "Está listo?",
-        "get_started": "Empecemos"
+    "nation": {
+      "placeholder": "País",
+      "label": "País"
     },
-    "info": {
-        "title": "Hola, {{name_user}}",
-        "idiom": {
-            "label": "Elija su formación académica",
-            "placeholder": "Formación académica"
-        },
-        "currency": {
-            "placeholder": "Expectativa salarial"
-        },
-        "available": {
-            "label": "Elija su disponibilidad",
-            "placeholder": "Disponible en..."
-        },
-        "skill": {
-            "label": "Elija sus habilidades",
-            "placeholder": "Habilidades"
-        }
+    "linkedin": {
+      "placeholder": "Linkedin link",
+      "label": "Linkedin:"
     },
-    "details": {
-        "title": "¡Hora de grabar los vídeos!",
-        "sub-title": {
-            "line_1": "Recuerda que tendrás 2 minutos para ",
-            "line_2": "grabar tus respuestas"
-        },
-        "rules": {
-            "line_1": "Asegúrate de tener una conexión a Internet estable.",
-            "line_2": "Sientete cómodo y libre de expresarte como desees.",
-            "line_3": "Las preguntas se mostrarán al comienzo de cada vídeo.",
-            "line_4": "Comprueba tus vídeos y continúa si estás seguro del resultado"
-        },
-        "turn_camera": "Enciende la cámara y el audio"
+    "portfolio": {
+      "placeholder": "Portfolio link",
+      "label": "Portfolio Link"
+    }
+  },
+  "applying": "Usted está postulando a",
+  "job_title": "{{-job_title}}",
+  "greetings": "Hola",
+  "thank_you_title": "Su aplicación ha sido enviada!",
+  "thank_you_description": {
+    "part_1": "Agradecemos su tiempo e interés,",
+    "part_2": "Nos comunicaremos con usted"
+  },
+  "thank_you_video": {
+    "title": "¡Gracias!",
+    "description": {
+      "line_1": "Gracias por postular. Evaluaremos su solicitud",
+      "line_2": "y nos pondremos en contacto con usted para informarle los siguientes pasos"
+    }
+  },
+  "file_title": "Subir CV",
+  "term_description": {
+    "line_1": "Debe aceptar los",
+    "line_2": " términos y condiciones"
+  },
+  "welcome": "¡Bienvenido!",
+  "slider": {
+    "description": "Para este proceso tendrás que realizar algunos pasos:"
+  },
+  "instructions": {
+    "title": "Otras cosas que tienes que tener en cuenta",
+    "rules": {
+      "part_1": "Necesitará unos 10 minutos para rellenar esta solicitud",
+      "part_2": "Tendrá 2 minutos para grabar cada respuesta.",
+      "part_3": "Puedes grabar cada respuesta tantas veces como quieras. Asegúrate de que estás cómodo con el resultado.",
+      "extra": {
+        "l1": "Puedes grabar cada respuesta tantas veces como quieras.",
+        "l2": "Asegúrate de que estás cómodo con el resultado."
+      }
     },
-    "video-completed": {
-        "title": "¡Su solicitud está completa!",
-        "sub-title": "Asegúrese de que todo es correcto",
-        "studies": "Estudios:",
-        "text-area-title": "¿Por qué le interesa trabajar con FTF?",
-        "skill-title": "Habilidades:",
-        "salary-title": "Expectativa salarial:",
-        "available-title": "Disponible en:",
-        "send": "Enviar y Terminar"
+    "are_you_ready": "Está listo?",
+    "get_started": "Empecemos"
+  },
+  "info": {
+    "title": "Hola, {{name_user}}",
+    "idiom": {
+      "label": "Elija su formación académica",
+      "placeholder": "Formación académica"
     },
-    "404": {
-        "line_1": {
-            "p1": "Lamentablemente, esta página",
-            "p2": "no existe o está desactivada"
-        },
-        "line_2": {
-            "p1": "Le invitamos a utilizar el menú",
-            "p2": "superior o a volver a la página principal"
-        },
-        "home_page": "Página principal"
+    "currency": {
+      "placeholder": "Expectativa salarial"
     },
-    "alert_message": "Este campo es obligatorio",
-    "modal": {
-        "title": "¡Advertencia!",
-        "message": "Debe completar todos los campos vacíos.",
-        "buttons": {
-            "cancel": "Cancelar",
-            "ok": "Continuar"
-        }
+    "available": {
+      "label": "Elija su disponibilidad",
+      "placeholder": "Disponible en..."
     },
-    "text_area": {
-        "label": "¿Por qué está interesado en trabajar con nosotros?"
+    "skill": {
+      "label": "Elija sus habilidades",
+      "placeholder": "Habilidades"
+    }
+  },
+  "details": {
+    "title": "¡Hora de grabar los vídeos!",
+    "sub-title": {
+      "line_1": "Recuerda que tendrás 2 minutos para ",
+      "line_2": "grabar tus respuestas"
     },
-    "back_button": {
-        "name": "Regresar"
+    "rules": {
+      "line_1": "Asegúrate de tener una conexión a Internet estable.",
+      "line_2": "Sientete cómodo y libre de expresarte como desees.",
+      "line_3": "Las preguntas se mostrarán al comienzo de cada vídeo.",
+      "line_4": "Comprueba tus vídeos y continúa si estás seguro del resultado"
     },
-    "submit_button": {
-        "name": "Siguiente"
+    "turn_camera": "Enciende la cámara y el audio"
+  },
+  "video-completed": {
+    "title": "¡Su solicitud está completa!",
+    "sub-title": "Asegúrese de que todo es correcto",
+    "studies": "Estudios:",
+    "text-area-title": "¿Por qué le interesa trabajar con FTF?",
+    "skill-title": "Habilidades:",
+    "salary-title": "Expectativa salarial:",
+    "available-title": "Disponible en:",
+    "send": "Enviar y Terminar"
+  },
+  "404": {
+    "line_1": {
+      "p1": "Lamentablemente, esta página",
+      "p2": "no existe o está desactivada"
     },
-    "currency_value": "S/. "
+    "line_2": {
+      "p1": "Le invitamos a utilizar el menú",
+      "p2": "superior o a volver a la página principal"
+    },
+    "home_page": "Página principal"
+  },
+  "alert_message": "Este campo es obligatorio",
+  "modal": {
+    "title": "¡Advertencia!",
+    "message": "Debe completar todos los campos vacíos.",
+    "buttons": {
+      "cancel": "Cancelar",
+      "ok": "Continuar"
+    }
+  },
+  "text_area": {
+    "label": "¿Por qué está interesado en trabajar con nosotros?"
+  },
+  "back_button": {
+    "name": "Regresar"
+  },
+  "submit_button": {
+    "name": "Siguiente"
+  },
+  "currency_value": "S/. "
 }

@@ -184,7 +184,7 @@ const FrmData: React.FC<Props> = ({ token }) => {
   return (
     <section className="grid place-items-center h-full mt-10 bg-white mobile:p-5">
       <h2 className="font-raleway text-gray-color mobile:text-sm laptop:text-xl mb-3 mobile:w-full laptop:w-9/12 tablet:w-11/12">
-        Hello, {name}
+        {t('greetings')}, {name}
       </h2>
       <section className="laptop:w-9/12 mobile:w-full tablet:w-11/12 bg-white">
         <div className="flex flex-wrap -mx-3">

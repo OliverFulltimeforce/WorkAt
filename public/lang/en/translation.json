@@ -1,145 +1,146 @@
 {
-    "data": {
-        "name": {
-            "placeholder": "Name",
-            "label": "Full name:"
-        },
-        "email": {
-            "placeholder": "Email",
-            "label": "Email:"
-        },
-        "birth": {
-            "placeholder": "Date of birth",
-            "label": "Date of birth"
-        },
-        "phone": {
-            "placeholder": "Phone",
-            "label": "Phone:"
-        },
-        "idiom": {
-            "placeholder": "English level",
-            "label": "English level"
-        },
-        "nation": {
-            "placeholder": "Country",
-            "label": "Country"
-        },
-        "linkedin": {
-            "placeholder": "Linkedin link",
-            "label": "Linkedin:"
-        },
-        "portfolio": {
-            "placeholder": "Portfolio link",
-            "label": "Portfolio Link"
-        }
+  "data": {
+    "name": {
+      "placeholder": "Name",
+      "label": "Full name:"
     },
-    "applying": "You're applying to",
-    "job_title": "{{job_title}}",
-    "thank_you_title": "Your application has been sent!",
-    "thank_you_description": {
-        "part_1": "We appreciate your time and interest,",
-        "part_2": "We will be comunicating with you"
+    "email": {
+      "placeholder": "Email",
+      "label": "Email:"
     },
-    "thank_you_video": {
-        "title": "Thank You!",
-        "description": {
-            "line_1": "Thank you for applying. We will evaluate your application",
-            "line_2": "and will contact you about what's next"
-        }
+    "birth": {
+      "placeholder": "Date of birth",
+      "label": "Date of birth"
     },
-    "file_title": "Upload CV",
-    "term_description": {
-        "line_1": "You must agree to",
-        "line_2": " terms and conditions"
+    "phone": {
+      "placeholder": "Phone",
+      "label": "Phone:"
     },
-    "welcome": "Welcome!",
-    "slider": {
-        "description": "For this process you will have to perfom some steps:"
+    "idiom": {
+      "placeholder": "English level",
+      "label": "English level"
     },
-    "instructions": {
-        "title": "Other things to know",
-        "rules": {
-            "part_1": "You will need about 10’ to fill out this application",
-            "part_2": "You will have 2’ to record each answer.",
-            "part_3": "You can record each answer as many times as you want. Make sure you’re confortable with the result.",
-            "extra": {
-                "l1": "You can record each answer as many times as you want.",
-                "l2": "Make sure you’re confortable with the result."
-            }
-        },
-        "are_you_ready": "Are you ready?",
-        "get_started": "Get Started"
+    "nation": {
+      "placeholder": "Country",
+      "label": "Country"
     },
-    "info": {
-        "title": "Hello, {{name_user}}",
-        "idiom": {
-            "label": "Studies",
-            "placeholder": "Academic training"
-        },
-        "currency": {
-            "placeholder": "Salary expectation"
-        },
-        "available": {
-            "label": "Available from...",
-            "placeholder": "Available from..."
-        },
-        "skill": {
-            "label": "Choose your skills",
-            "placeholder": "Skill"
-        }
+    "linkedin": {
+      "placeholder": "Linkedin link",
+      "label": "Linkedin:"
     },
-    "details": {
-        "title": "Time to Record your videos!",
-        "sub-title": {
-            "line_1": "Remember that you will have 2' to",
-            "line_2": "record your answers"
-        },
-        "rules": {
-            "line_1": "Make sure you have a stable internet connection.",
-            "line_2": "Feel comfortable and free to express yourself as you wish.",
-            "line_3": "The questions will be shown ones you start each video.",
-            "line_4": "Check your videos and continue if you’re sure with the result"
-        },
-        "turn_camera": "Turn on your camera and audio"
+    "portfolio": {
+      "placeholder": "Portfolio link",
+      "label": "Portfolio Link"
+    }
+  },
+  "applying": "You're applying to",
+  "greetings": "Hello",
+  "job_title": "{{-job_title}}",
+  "thank_you_title": "Your application has been sent!",
+  "thank_you_description": {
+    "part_1": "We appreciate your time and interest,",
+    "part_2": "We will be comunicating with you"
+  },
+  "thank_you_video": {
+    "title": "Thank You!",
+    "description": {
+      "line_1": "Thank you for applying. We will evaluate your application",
+      "line_2": "and will contact you about what's next"
+    }
+  },
+  "file_title": "Upload CV",
+  "term_description": {
+    "line_1": "You must agree to",
+    "line_2": " terms and conditions"
+  },
+  "welcome": "Welcome!",
+  "slider": {
+    "description": "For this process you will have to perfom some steps:"
+  },
+  "instructions": {
+    "title": "Other things to keep in mind",
+    "rules": {
+      "part_1": "You will need about 10’ to fill out this application",
+      "part_2": "You will have 2’ to record each answer.",
+      "part_3": "You can record each answer as many times as you want. Make sure you’re confortable with the result.",
+      "extra": {
+        "l1": "You can record each answer as many times as you want.",
+        "l2": "Make sure you’re confortable with the result."
+      }
     },
-    "video-completed": {
-        "title": "Your Application is complete!",
-        "sub-title": "Make sure everything is correct",
-        "studies": "Studies:",
-        "text-area-title": "Why are you interesting in working with FTF?",
-        "skill-title": "Skills:",
-        "salary-title": "Salary Expectations:",
-        "available-title": "Available from:",
-        "send": "Send & Finish"
+    "are_you_ready": "Are you ready?",
+    "get_started": "Get Started"
+  },
+  "info": {
+    "title": "Hello, {{name_user}}",
+    "idiom": {
+      "label": "Studies",
+      "placeholder": "Academic training"
     },
-    "404": {
-        "line_1": {
-            "p1": "Unfortunately, this page does",
-            "p2": "not exist or is disabled"
-        },
-        "line_2": {
-            "p1": "We invite you to use the upper",
-            "p2": "menu or return to the main page"
-        },
-        "home_page": "Homepage"
+    "currency": {
+      "placeholder": "Salary expectation"
     },
-    "alert_message": "This field is required",
-    "modal": {
-        "title": "Warning!",
-        "message": "You must to complete all empty fields.",
-        "buttons": {
-            "cancel": "Cancel",
-            "ok": "Continue"
-        }
+    "available": {
+      "label": "Available from...",
+      "placeholder": "Available from..."
     },
-    "text_area": {
-        "label": "Why are you interested in working with us:"
+    "skill": {
+      "label": "Choose your skills",
+      "placeholder": "Skills"
+    }
+  },
+  "details": {
+    "title": "Time to Record your videos!",
+    "sub-title": {
+      "line_1": "Remember that you will have 2' to",
+      "line_2": "record your answers"
     },
-    "back_button": {
-        "name": "Back"
+    "rules": {
+      "line_1": "Make sure you have a stable internet connection.",
+      "line_2": "Feel comfortable and free to express yourself as you wish.",
+      "line_3": "The questions will be shown ones you start each video.",
+      "line_4": "Check your videos and continue if you’re sure with the result"
     },
-    "submit_button": {
-        "name": "Next"
+    "turn_camera": "Turn on your camera and audio"
+  },
+  "video-completed": {
+    "title": "Your Application is complete!",
+    "sub-title": "Make sure everything is correct",
+    "studies": "Studies:",
+    "text-area-title": "Why are you interesting in working with FTF?",
+    "skill-title": "Skills:",
+    "salary-title": "Salary Expectations:",
+    "available-title": "Available from:",
+    "send": "Send & Finish"
+  },
+  "404": {
+    "line_1": {
+      "p1": "Unfortunately, this page does",
+      "p2": "not exist or is disabled"
     },
-    "currency_value": "$ "
+    "line_2": {
+      "p1": "We invite you to use the upper",
+      "p2": "menu or return to the main page"
+    },
+    "home_page": "Homepage"
+  },
+  "alert_message": "This field is required",
+  "modal": {
+    "title": "Warning!",
+    "message": "You must to complete all empty fields.",
+    "buttons": {
+      "cancel": "Cancel",
+      "ok": "Continue"
+    }
+  },
+  "text_area": {
+    "label": "Why are you interested in working with us:"
+  },
+  "back_button": {
+    "name": "Back"
+  },
+  "submit_button": {
+    "name": "Next"
+  },
+  "currency_value": "$ "
 }
