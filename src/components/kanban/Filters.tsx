@@ -149,7 +149,7 @@ export default function Filters() {
                   <Checkbox
                     id={pos._id!.toString()}
                     onChange={handlePositionCheck}
-                    className="flex items-center ring-1 ring-gray-100 h-6 w-6 border rounded-md text-2xl"
+                    className="flex items-center justify-center border border-gray-300 h-6 w-6 border rounded-md"
                     checkColor="text-cyan-color"
                     checked={position.indexOf(pos._id!) !== -1 ? true : false}
                     name={pos.title}
@@ -218,7 +218,7 @@ export default function Filters() {
                   <Checkbox
                     id={status.id.toString()}
                     onChange={handleStatusCheck}
-                    className="flex items-center ring-1 ring-gray-100 h-6 w-6 border rounded-md text-3xl"
+                    className="flex items-center justify-center border border-gray-300 h-6 w-6 border rounded-md"
                     checkColor="text-cyan-color"
                     checked={
                       secondary_status.indexOf(status.value) !== -1
