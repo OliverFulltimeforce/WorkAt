@@ -12,6 +12,7 @@ import Text from '../inputs/Text';
 import LoaderSpinner from '../../assets/loaderSpinner';
 import ErrorMessages from './ErrorMessages';
 import priorities from '../../config/positions/constants';
+import Checkbox from '../inputs/Checkbox';
 
 type OptionValues = {
   id: string;
@@ -133,16 +134,21 @@ export default function FrmPosition({ _id }: FrmPositionProps) {
           </div>
           <div className="flex space-x-3">
             {prioritiesWithoutCurrent.map((priority) => (
-              <div key={priority.id}>
-                <input
-                  type="checkbox"
-                  name={priority.name}
-                  className="hover:cursor-pointer font-raleway"
-                  id={priority.id.toString()}
-                  value={priority.name}
-                  onChange={(e) => setSelectedPriority(e.target.value)}
-                  checked={selectedPriority === priority.name ? true : false}
-                />
+              <div key={priority.id} className="flex">
+                <label htmlFor={priority.id.toString()}>
+                  <Checkbox
+                    id={priority.id.toString()}
+                    className="flex items-center justify-center h-6 w-6 border border-gray-400 rounded-md"
+                    checkColor="text-cyan-color"
+                    name={priority.name}
+                    onChange={(e) => setSelectedPriority(e.target.value)}
+                    checked={selectedPriority === priority.name ? true : false}
+                    checkedSingle={
+                      selectedPriority === priority.name ? true : false
+                    }
+                    value={priority.name}
+                  />
+                </label>
                 <label
                   className="ml-3 hover:cursor-pointer font-raleway"
                   htmlFor={priority.id.toString()}

@@ -56,15 +56,15 @@ const Stream: React.FC<StreamProps> = ({
         videoChunks.current.push(e.data);
       }
     };
-  }, [mediaRecorderRef, webcamRef, setCapture]);
+  }, [mediaRecorderRef, webcamRef, setCapture, startTimer]);
 
   /* STOP RECORDING */
-  const handleStopCaptureClick = () => {
+  const handleStopCaptureClick = useCallback(() => {
     setCapture(false);
     setIsStopped(true);
     setTimeout(() => stopTimer(), 500);
     mediaRecorderRef.current.stop();
-  };
+  }, [mediaRecorderRef, setCapture, setIsStopped, stopTimer]);
 
   /* REMAKE RECORDING */
   const handleRemakeCaptureClick = () => {

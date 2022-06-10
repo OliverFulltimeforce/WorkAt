@@ -1,4 +1,4 @@
-import { BsCheck2All, BsCheck } from 'react-icons/bs';
+import { BsCheck2All, BsCheckLg } from 'react-icons/bs';
 
 type CheckboxProps = {
   checkedSingle?: boolean;
@@ -37,7 +37,7 @@ export default function Checkbox({
       />
       <div className={`${className} hover:cursor-pointer`}>
         {checkedSingle ? (
-          <BsCheck className={checkColor} />
+          <BsCheckLg className={checkColor} />
         ) : seen ? (
           <BsCheck2All className={checkColor} />
         ) : null}
