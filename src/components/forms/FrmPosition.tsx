@@ -5,6 +5,7 @@ import {
   createPosition,
   UpdateInfo,
 } from '../../redux/positions/actions/PositionsActions';
+import { IUser } from '../../redux/users/types/data';
 import { State } from '../../redux/store/store';
 import { VIEW_OPEN_POSITIONS } from '../../config/routes/paths';
 import MultiSelect from 'multiselect-react-dropdown';
@@ -35,8 +36,8 @@ export default function FrmPosition({ _id }: FrmPositionProps) {
 
   const multiselectRef = useRef<MultiSelect>(null);
 
-  const data: OptionValues[] = users.reduce((prev: any, user: any) => {
-    return [...prev, { id: user._id, name: user.name }];
+  const data: OptionValues[] = users.reduce((prev: IUser[], user: IUser) => {
+    return [...prev, { id: user._id!, name: user.name }];
   }, []);
 
   const positionInfo = useSelector((state: State) => state.positions.info);
@@ -127,8 +128,8 @@ export default function FrmPosition({ _id }: FrmPositionProps) {
 
   return (
     <div className="flex justify-center mobile:mt-8 mobile:mx-[5px] tablet:mx-0 laptop:mx-0 laptop:mt-0">
-      <section className="flex flex-col mobile:w-full laptop:w-9/12 tablet:w-11/12 p-2">
-        <div className="ml-52 pb-4">
+      <section className="flex flex-col justify-center mobile:w-full laptop:w-9/12 tablet:w-11/12 p-2">
+        <div className="laptop:ml-14 desktop:ml-52 pb-4">
           <div className=" pb-2">
             <span className="font-raleway font-medium">Select Priority:</span>
           </div>

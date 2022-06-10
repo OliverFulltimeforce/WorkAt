@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux';
 import { Tab } from '@headlessui/react';
-import DialogControl from '../../../buttons/DialogControl';
 import { State } from '../../../../redux/store/store';
+import { IUser } from '../../../../redux/users/types/data';
+import DialogControl from '../../../buttons/DialogControl';
 
 interface Props {
   isApproved: any;
@@ -75,13 +76,11 @@ const ListDialog: React.FC<Props> = ({
       <div className="absolute top-[17rem] left-[1.0rem] bg-white p-3 rounded-lg">
         <span className="text-xs">Assigned Recruiters:</span>
         <ul className="ml-6 list-disc">
-          {detail.designated_recruiters.map(
-            (recruiter: string, index: number) => (
-              <li key={index} className="text-xs">
-                {recruiter}
-              </li>
-            ),
-          )}
+          {detail.position.designated.map((recruiter: IUser) => (
+            <li key={recruiter._id} className="text-xs">
+              {recruiter.name}
+            </li>
+          ))}
         </ul>
       </div>
 
