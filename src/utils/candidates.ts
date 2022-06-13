@@ -43,10 +43,7 @@ export function getDetailHeaderText(main_status: string) {
 }
 
 export function getTopBorderColor(secondary_status: string) {
-  const cardBorderColor = cardColor.find(
-    (item) => item.name === secondary_status,
-  )?.color;
-  return cardBorderColor;
+  return cardColor.find((item) => item.name === secondary_status)?.color;
 }
 
 export const sortByColumn = (candidates: ICandidate[]) => {
