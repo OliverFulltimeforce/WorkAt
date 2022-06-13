@@ -130,10 +130,10 @@ export default function Filters() {
               : 'duration-200 opacity-0 invisible absolute z-10 rounded-sm mt-2 bg-white shadow-md'
           }
         >
-          <div className="px-4 pt-4 space-y-4">
+          <div className="flex flex-col px-4 pt-4 space-y-4">
             <button
               onClick={handleAllPositionsCheck}
-              className="flex ml-[12.1rem] text-sm text-cyan-500 font-raleway"
+              className="flex justify-end text-sm text-cyan-500 font-raleway"
             >
               {allPositionsSelected && position.length !== 0
                 ? 'Unselect all'
@@ -149,14 +149,12 @@ export default function Filters() {
                   <Checkbox
                     id={pos._id!.toString()}
                     onChange={handlePositionCheck}
-                    className="flex items-center ring-1 ring-gray-100 h-6 w-6 border rounded-md text-2xl"
+                    className="flex items-center justify-center border border-gray-300 h-6 w-6 border rounded-md"
                     checkColor="text-cyan-color"
-                    checked={position.indexOf(pos._id!) !== -1 ? true : false}
+                    checked={position.indexOf(pos._id!) !== -1}
+                    checkedSingle={position.indexOf(pos._id!) !== -1}
                     name={pos.title}
                     value={pos._id!}
-                    checkedSingle={
-                      position.indexOf(pos._id!) !== -1 ? true : false
-                    }
                   />
                 </label>
               </div>
@@ -189,9 +187,9 @@ export default function Filters() {
               : 'duration-200 opacity-0 invisible absolute z-10 rounded-sm mt-2 bg-white shadow-md'
           }
         >
-          <div className="px-4 pt-4 space-y-4">
+          <div className="flex flex-col px-4 pt-4 space-y-4">
             <button
-              className="flex ml-[12.1rem] text-sm text-cyan-500 font-raleway"
+              className="flex justify-end text-sm text-cyan-500 font-raleway"
               onClick={handleAllStatusCheck}
             >
               {allStatusSelected && secondary_status.length !== 0
@@ -207,9 +205,12 @@ export default function Filters() {
                   <div
                     className={`mt-[0.3rem] w-4 h-4 rounded-xl ${status.color}`}
                   ></div>
-                  <span className="ml-3 font-raleway">
+                  <label
+                    htmlFor={status.id.toString()}
+                    className="ml-3 font-raleway"
+                  >
                     {status.displayName}
-                  </span>
+                  </label>
                 </div>
                 <label
                   htmlFor={status.id.toString()}
@@ -218,20 +219,14 @@ export default function Filters() {
                   <Checkbox
                     id={status.id.toString()}
                     onChange={handleStatusCheck}
-                    className="flex items-center ring-1 ring-gray-100 h-6 w-6 border rounded-md text-3xl"
+                    className="flex items-center justify-center border border-gray-300 h-6 w-6 border rounded-md"
                     checkColor="text-cyan-color"
-                    checked={
+                    checked={secondary_status.indexOf(status.value) !== -1}
+                    checkedSingle={
                       secondary_status.indexOf(status.value) !== -1
-                        ? true
-                        : false
                     }
                     name={status.displayName}
                     value={status.value}
-                    checkedSingle={
-                      secondary_status.indexOf(status.value) !== -1
-                        ? true
-                        : false
-                    }
                   />
                 </label>
               </div>
