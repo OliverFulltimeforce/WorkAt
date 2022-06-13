@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import {AiOutlineUp as ArrowUp, AiOutlineDown as ArrowDown} from 'react-icons/ai'
-import { WithContext as ReactTags } from 'react-tag-input'
 import '../../assets/scss/FormView.scss'
 import InputTag from '../inputs/InputTag'
 
@@ -211,7 +210,12 @@ const FormView: React.FC<Props> = ({toggleStatus, setToggleStatus}) => {
                 </div>
 
                 <div className="flex flex-col w-1/12 select-none">
-                    <div className="flex items-center pt-6 justify-center h-20 text-[#00ADEF] font-bold cursor-pointer">Apply</div>
+                    <div 
+                      className="flex items-center pt-6 justify-center h-20 text-[#00ADEF] font-bold cursor-pointer"
+                      onClick={()=> console.log("APPLYING FILTERS")}
+                    >
+                        Apply
+                      </div>
                     <div className="flex items-center justify-center h-20"></div>
                 </div>
           </div>
