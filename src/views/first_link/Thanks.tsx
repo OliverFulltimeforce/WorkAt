@@ -1,4 +1,8 @@
-import Header from "../../components/header/Header";
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { lastStageOpts } from '../../utils/lastStageOpts';
+import { VIEW_404 } from '../../config/routes/paths';
+import Header from '../../components/header/Header';
 
 interface Props {
   title: string;
@@ -7,6 +11,25 @@ interface Props {
 }
 
 const Thanks: React.FC<Props> = ({ title, FirstLine, SecondLine }) => {
+  const [searchParams] = useSearchParams();
+
+  const stage = searchParams.get('stage');
+  const cleanStorageData = searchParams.get('cleanStorage');
+  const finished = searchParams.get('finished');
+
+  useEffect(() => {
+    if (stage) {
+      if (lastStageOpts[stage as keyof typeof lastStageOpts]) {
+        lastStageOpts[stage as keyof typeof lastStageOpts](
+          cleanStorageData!,
+          finished!,
+        );
+      }
+    } else {
+      window.location.assign(VIEW_404);
+    }
+  }, [stage, cleanStorageData, finished]);
+
   return (
     <div className="grid justify-center items-center h-screen">
       <Header

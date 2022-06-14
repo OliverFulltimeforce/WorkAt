@@ -4,13 +4,14 @@ import { MdRestartAlt } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { State } from '../../redux/store/store';
 import { VIEW_VIDEO_COMPLETED } from '../../config/routes/paths';
-import CameraOn from './CameraOn';
-import Stop from './control/Stop';
 import { useCounter } from '../../hooks/useCounter';
 import { UseCamera } from '../../hooks/useCamera';
+import { SendVideo } from '../../redux/candidates/actions/CandidateAction';
+import { getStorageItem, setStorage } from '../../utils/localStorage';
+import CameraOn from './CameraOn';
+import Stop from './control/Stop';
 import ProgressVideoBar from '../extras/ProgressVideoBar';
 import Recording from '../extras/Recording';
-import { SendVideo } from '../../redux/candidates/actions/CandidateAction';
 
 type StreamProps = {
   videoCounter: number;
@@ -43,33 +44,33 @@ const Stream: React.FC<StreamProps> = ({
 
   /* START RECORDING */
   const handleStartCaptureClick = useCallback(() => {
-    setCapture(true);
-    startTimer();
     mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
       mimeType: 'video/webm',
     });
-
     mediaRecorderRef.current.start();
+
+    setCapture(true);
+    startTimer();
 
     mediaRecorderRef.current.ondataavailable = (e: any) => {
       if (videoChunks.current) {
         videoChunks.current.push(e.data);
       }
     };
-  }, [mediaRecorderRef, webcamRef, setCapture, startTimer]);
+  }, [mediaRecorderRef, webcamRef, setCapture]);
 
   /* STOP RECORDING */
   const handleStopCaptureClick = useCallback(() => {
+    stopTimer();
+    mediaRecorderRef.current.stop();
     setCapture(false);
     setIsStopped(true);
-    setTimeout(() => stopTimer(), 500);
-    mediaRecorderRef.current.stop();
   }, [mediaRecorderRef, setCapture, setIsStopped, stopTimer]);
 
   /* REMAKE RECORDING */
   const handleRemakeCaptureClick = () => {
-    resetTimer();
     setIsStopped(false);
+    resetTimer();
     videoChunks.current = [];
     setTimeout(() => {
       handleStartCaptureClick();
@@ -86,9 +87,23 @@ const Stream: React.FC<StreamProps> = ({
         const currentCandidateQuestionsLength = videos_question_list.length;
 
         const video_url = URL.createObjectURL(blob);
-        const formData = new FormData();
 
-        formData.append('video_recording_url', video_url);
+        const currentVideos = getStorageItem('videos');
+
+        // saves video in localStorage to allow the candidate to remake them at the last stage
+        setStorage({
+          videos: JSON.stringify([
+            ...currentVideos,
+            {
+              id: `video-${videoCounter}`,
+              question_id: videos_question_list[videoCounter - 1].question_id,
+              title: videos_question_list[videoCounter - 1].question_title,
+              url: video_url,
+            },
+          ]),
+        });
+
+        const formData = new FormData();
 
         if (videoCounter === currentCandidateQuestionsLength) {
           formData.append('video', blob);
@@ -111,8 +126,11 @@ const Stream: React.FC<StreamProps> = ({
 
           videoChunks.current = [];
           setVideoCounter(videoCounter + 1);
+
           dispatch(SendVideo(_id, formData));
+
           setIsStopped(false);
+
           setTimeout(() => {
             resetTimer();
             handleStartCaptureClick();
@@ -142,6 +160,7 @@ const Stream: React.FC<StreamProps> = ({
 
   useEffect(() => {
     setTimeout(() => {
+      setStorage({ videos: JSON.stringify([]) });
       handleStartCaptureClick();
     }, 500);
   }, [handleStartCaptureClick]);
