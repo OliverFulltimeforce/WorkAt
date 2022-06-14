@@ -153,7 +153,9 @@ const FrmApply: React.FC<Props> = ({ _id }) => {
   };
 
   if (!loading && success.status === 201) {
-    window.location.assign(VIEW_APPLY_THANKS);
+    window.location.assign(
+      `${VIEW_APPLY_THANKS}?stage=application&cleanStorage=false&finished=true`,
+    );
   }
 
   let job_title = positionInfo.title;

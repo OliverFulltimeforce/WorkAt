@@ -51,7 +51,9 @@ const VideoCompleted = () => {
   };
 
   const handleThanksRedirect = () => {
-    navigate(VIEW_WELCOME_THANKS);
+    navigate(
+      `${VIEW_WELCOME_THANKS}?stage=interview&cleanStorage=true&finished=true`,
+    );
   };
 
   useEffect(() => {
