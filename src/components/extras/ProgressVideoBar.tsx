@@ -1,4 +1,4 @@
-import "./../../assets/scss/ProgressVideoBar.scss";
+import './../../assets/scss/ProgressVideoBar.scss';
 
 interface Props {
   value: number;

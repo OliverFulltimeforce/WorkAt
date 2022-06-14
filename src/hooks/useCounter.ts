@@ -28,9 +28,8 @@ export function useCounter() {
 
   const stopTimer = () => {
     clearInterval(intervalWatch);
+    setIntervalWatch(0);
   };
-
-  const resumeTimer = () => startTimer();
 
   const resetTimer = () => {
     setProgress(0);
@@ -43,7 +42,6 @@ export function useCounter() {
     progress,
     startTimer,
     stopTimer,
-    resumeTimer,
     resetTimer,
   };
 }

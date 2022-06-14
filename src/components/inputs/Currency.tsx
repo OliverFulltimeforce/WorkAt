@@ -1,7 +1,6 @@
-import CurrencyInput from "react-currency-input-field";
-import { useTranslation } from "react-i18next";
-import Alert from "../extras/Alert";
-import SelectCoin from "./SelectCoin";
+import CurrencyInput from 'react-currency-input-field';
+import Alert from '../extras/Alert';
+import SelectCoin from './SelectCoin';
 
 interface Props {
   id: string;
@@ -31,10 +30,8 @@ const Currency: React.FC<Props> = ({
   setCoin,
 }) => {
   /*  */
-  const { t } = useTranslation();
-
   const onChange = (evt: any) => {
-    setValue(evt.target.value.replace(RegExp, ""));
+    setValue(evt.target.value.replace(RegExp, ''));
   };
 
   /* const currency_value = `${t("currency_value")}`; */
@@ -57,9 +54,9 @@ const Currency: React.FC<Props> = ({
           allowDecimals={false}
           className={`${
             showAlert
-              ? "bg-white border-red-color border"
-              : "bg-light-color border-light-color"
-          } ${value && "!border-cyan-color bg-light-blue"}
+              ? 'bg-white border-red-color border'
+              : 'bg-light-color border-light-color'
+          } ${value && '!border-cyan-color bg-light-blue'}
           focus:outline-none focus:bg-white block appearance-none laptop:rounded-2xl mobile:rounded-[10px] py-3 mobile:pl-[60px] tablet:pl-[70px] laptop:pl-[70px] pr-4 min-w-full mobile:w-[161px] mobile:h-[35px] tablet:w-[241px] tablet:h-[54px] laptop:w-[287px] laptop:h-[54px] leading-tight mobile:text-xs laptop:text-[15px] desktop:text-base font-raleway font-light text-gray-color focus:border-cyan-color border focus:shadow-cyan-color/50 focus:shadow-sm placeholder:text-gray-color placeholder:font-raleway`}
           prefix=""
           step={10}
