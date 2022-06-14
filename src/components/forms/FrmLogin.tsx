@@ -65,8 +65,7 @@ const FrmLogin = () => {
     window.location.assign(VIEW_KANBAN);
   }
 
-  const CLIENT_ID =
-    '564534888385-36u4qfv42jb0s38h026i2t608dukd2hh.apps.googleusercontent.com';
+  const CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
   const handleSuccess = (result: any) => {
     dispatch(Login({ tokenId: result.credential }, true));
@@ -206,7 +205,7 @@ const FrmLogin = () => {
         <GoogleButton
           handleSuccess={handleSuccess}
           text="signin_with"
-          CLIENT_ID={CLIENT_ID}
+          CLIENT_ID={CLIENT_ID!}
         />
       </section>
     </section>
