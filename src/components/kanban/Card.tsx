@@ -52,7 +52,7 @@ export default function Card({
           <div className="flex pr-8">
             <label htmlFor={_id}>
               <Checkbox
-                className="flex items-center ring-1 ring-gray-100 h-7 w-7 shadow-md drop-shadow-sm text-3xl rounded-md"
+                className="flex items-center ring-1 ring-gray-100 border h-7 w-7 shadow-md drop-shadow-sm text-3xl rounded-md"
                 checkColor="text-cyan-color"
                 id={_id}
                 onChange={() => setIsSeen(!isSeen)}
