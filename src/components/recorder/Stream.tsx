@@ -13,6 +13,8 @@ import Stop from './control/Stop';
 import ProgressVideoBar from '../extras/ProgressVideoBar';
 import Recording from '../extras/Recording';
 
+// TODO: fix timer reset after Remake button is clicked. Check handleRemakeCaptureClick function and resetTimer from useCounter
+
 type StreamProps = {
   videoCounter: number;
   setVideoCounter: (value: number) => void;

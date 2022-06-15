@@ -11,6 +11,8 @@ import HeaderDialog from '../header/HeaderDialog';
 import Modal from '../extras/Modal';
 import LoaderSpinner from '../../assets/loaderSpinner';
 
+// TODO: Play candidate´s videos in the Conclusions tab. Check the conclusions.tsx file and the QskInterview.tsx file to work.
+
 interface Props {
   isDialogClose: any;
   isModalLoading: boolean;

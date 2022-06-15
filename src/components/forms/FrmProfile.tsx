@@ -9,6 +9,9 @@ import SingleSelect from '../inputs/SingleSelect';
 import Countries from '../../assets/json/Countries.json';
 import LoaderSpinner from '../../assets/loaderSpinner';
 
+// TODO: reset password functionality, and redux logic.
+// TODO: Once the user´s password is changed, the user should be told that they have to log in again, and logged them out.
+
 type FrmProfileProps = {
   isEditable: boolean;
   setIsEditable: (isEditable: boolean) => void;

@@ -9,6 +9,8 @@ import secondaryStatus from '../../config/kanban/constants';
 import Apply from '../buttons/Apply';
 import Checkbox from '../inputs/Checkbox';
 
+// TODO: Better filters logic here and in backend. Check the GetCandidatesFiltered service in the candidate.service.ts file in the backend. Also change this in the Search.tsx file.
+
 export default function Filters() {
   const dispatch = useDispatch();
 

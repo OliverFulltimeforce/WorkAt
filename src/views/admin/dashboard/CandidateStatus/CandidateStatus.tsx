@@ -16,6 +16,9 @@ import {
 } from '../../../../config/kanban/columnGuideInfo';
 import { sortByColumn } from '../../../../utils/candidates';
 
+// TODO: Google Calendar integration for Meet invite when a candidate goes to the Meeting stage.
+// TODO: Email integration for when the Applying URL is generated.
+
 export default function CandidateStatus() {
   const dispatch = useDispatch();
 

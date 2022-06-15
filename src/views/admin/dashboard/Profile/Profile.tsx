@@ -5,6 +5,8 @@ import { State } from '../../../../redux/store/store';
 import FrmProfile from '../../../../components/forms/FrmProfile';
 import { ClearUserSuccess } from '../../../../redux/users/actions/UserAction';
 
+// TODO: reset password functionality, and redux logic.
+
 export default function Profile() {
   const dispatch = useDispatch();
 

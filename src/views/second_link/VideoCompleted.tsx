@@ -19,6 +19,9 @@ import { State } from '../../redux/store/store';
 import { useTranslation } from 'react-i18next';
 import VideoPlayer from '../../components/recorder/player/VideoPlayer';
 
+// TODO: Render each video in the slider and play them.
+// TODO: Add functionality to remake button. Use the videos URL in localStorage to set the video to remake in the Stream.tsx file.
+
 const VideoCompleted = () => {
   /*  */
   const navigate = useNavigate();

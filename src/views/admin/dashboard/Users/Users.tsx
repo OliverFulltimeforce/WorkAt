@@ -6,6 +6,9 @@ import CreateNew from '../../../../components/buttons/CreateNew';
 import UserList from '../../../../components/users/List';
 import LoaderSpinner from '../../../../assets/loaderSpinner';
 
+// TODO: Create new button functionality, which should redirect to register page.
+// TODO: Sub-menu in each User item, with the option to set the user´s role.
+
 export default function Users() {
   const dispatch = useDispatch();
 

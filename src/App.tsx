@@ -3,6 +3,11 @@ import AdminRoutes from './config/routes/AdminRoutes';
 import LoginRoutes from './config/routes/LoginRoutes';
 import { VIEW_LOGIN } from './config/routes/paths';
 
+// TODO: Admin Role validation and conditional rendering in Card component for checkbox, and candidate´s process logic when they are in Chosen column.
+// TODO: Admin Role validation and conditional rendering in User Dialog component for the process logic buttons and seen checkbox.
+// TODO: Admin Role validation and conditional rendering for Users tab in Navbar.
+// TODO: Admin Role validation and conditional rendering for each item in Open positions tab. If the user is not Admin, show Your Active searches List, which is already rendered, but change the isAdmin const with the Role validation.
+
 const App = () => {
   const currentUrl = window.location.pathname.split('/');
 
