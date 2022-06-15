@@ -32,7 +32,7 @@ export default function Toggle({
   };
 
   return (
-    <label className="relative w-[4rem] h-[1.80rem] rounded-full bg-[#F0F0F4] mt-2 hover:cursor-pointer">
+    <label className="relative w-[3rem] h-[1.80rem] rounded-full bg-[#F0F0F4] mt-2 hover:cursor-pointer border-2">
       <input
         type="checkbox"
         className="opacity-0 w-0 h-0 cursor-pointer"
@@ -43,16 +43,16 @@ export default function Toggle({
         <span
           className={
             isToggled && !updating
-              ? "before:absolute before:top-0.5 before:left-[4px] before:bottom-[4px] before:content-[''] before:w-[1.5rem] before:h-[1.5rem] cursor-pointer before:bg-[#00ADEF] before:transition ease-in-out duration-1100 before:transform before:translate-x-8 before:rounded-full"
-              : "before:absolute before:top-0.5 before:left-[4px] before:bottom-[4px] before:content-[''] before:w-[1.5rem] before:h-[1.5rem] cursor-pointer before:bg-[#475564] before:transition ease-in-out duration-1100 before:rounded-full before:transform before:translate-x-0"
+              ? "before:absolute before:top-[0.05rem] before:left-[-13px] before:bottom-[4px] before:content-[''] before:w-[1.5rem] before:h-[1.5rem] cursor-pointer before:bg-[#00ADEF] before:transition ease-in-out duration-1100 before:transform before:translate-x-8 before:rounded-full"
+              : "before:absolute before:top-[0.05rem] before:left-[-13px] before:bottom-[4px] before:content-[''] before:w-[1.5rem] before:h-[1.5rem] cursor-pointer before:bg-[#475564] before:transition ease-in-out duration-1100 before:rounded-full before:transform before:translate-x-4"
           }
         />
       ) : (
         <span
           className={
             isToggled && !updating
-              ? "before:absolute before:top-0.5 before:left-[4px] before:bottom-[4px] before:content-[''] before:w-[1.5rem] before:h-[1.5rem] cursor-pointer before:bg-[#475564] before:transition ease-in-out duration-1100 before:transform before:translate-x-0 before:rounded-full"
-              : "before:absolute before:top-0.5 before:left-[4px] before:bottom-[4px] before:content-[''] before:w-[1.5rem] before:h-[1.5rem] cursor-pointer before:bg-[#00ADEF] before:transition ease-in-out duration-1100 before:rounded-full before:transform before:translate-x-8"
+              ? "before:absolute before:top-[0.05rem] before:left-[-13px] before:bottom-[4px] before:content-[''] before:w-[1.5rem] before:h-[1.5rem] cursor-pointer before:bg-[#475564] before:transition ease-in-out duration-1100 before:transform before:translate-x-4 before:rounded-full"
+              : "before:absolute before:top-[0.05rem] before:left-[-13px] before:bottom-[4px] before:content-[''] before:w-[1.5rem] before:h-[1.5rem] cursor-pointer before:bg-[#00ADEF] before:transition ease-in-out duration-1100 before:rounded-full before:transform before:translate-x-8"
           }
         />
       )}
