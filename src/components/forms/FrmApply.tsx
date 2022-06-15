@@ -154,7 +154,7 @@ const FrmApply: React.FC<Props> = ({ _id }) => {
 
   if (!loading && success.status === 201) {
     window.location.assign(
-      `${VIEW_APPLY_THANKS}?stage=application&cleanStorage=false&finished=true`,
+      `${VIEW_APPLY_THANKS}?stage=application&cleanStorage=true&finished=true`,
     );
   }
 
@@ -279,7 +279,10 @@ const FrmApply: React.FC<Props> = ({ _id }) => {
             size={isFileHigh}
           />
           <div className="mx-auto py-5">
-            <ErrorMessages errorState={candidateError} errorTerms={['pdf']} />
+            <ErrorMessages
+              errorState={candidateError}
+              errorTerms={['pdf', 'cv', 'resume']}
+            />
           </div>
           <CheckboxApply
             id="terms"
