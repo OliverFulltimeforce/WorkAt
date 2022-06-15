@@ -44,14 +44,14 @@ export default function Toggle({
           className={
             isToggled && !updating
               ? "before:absolute before:top-[0.05rem] before:left-[-13px] before:bottom-[4px] before:content-[''] before:w-[1.5rem] before:h-[1.5rem] cursor-pointer before:bg-[#00ADEF] before:transition ease-in-out duration-1100 before:transform before:translate-x-8 before:rounded-full"
-              : "before:absolute before:top-[0.05rem] before:left-[-13px] before:bottom-[4px] before:content-[''] before:w-[1.5rem] before:h-[1.5rem] cursor-pointer before:bg-[#475564] before:transition ease-in-out duration-1100 before:rounded-full before:transform before:translate-x-4"
+              : "before:absolute before:top-[0.05rem] before:left-[-13px] before:bottom-[4px] before:content-[''] before:w-[1.5rem] before:h-[1.5rem] cursor-pointer before:bg-[#475564] before:transition ease-in-out duration-1100 before:rounded-full before:transform before:translate-x-3.5"
           }
         />
       ) : (
         <span
           className={
             isToggled && !updating
-              ? "before:absolute before:top-[0.05rem] before:left-[-13px] before:bottom-[4px] before:content-[''] before:w-[1.5rem] before:h-[1.5rem] cursor-pointer before:bg-[#475564] before:transition ease-in-out duration-1100 before:transform before:translate-x-4 before:rounded-full"
+              ? "before:absolute before:top-[0.05rem] before:left-[-13px] before:bottom-[4px] before:content-[''] before:w-[1.5rem] before:h-[1.5rem] cursor-pointer before:bg-[#475564] before:transition ease-in-out duration-1100 before:transform before:translate-x-3.5 before:rounded-full"
               : "before:absolute before:top-[0.05rem] before:left-[-13px] before:bottom-[4px] before:content-[''] before:w-[1.5rem] before:h-[1.5rem] cursor-pointer before:bg-[#00ADEF] before:transition ease-in-out duration-1100 before:rounded-full before:transform before:translate-x-8"
           }
         />
