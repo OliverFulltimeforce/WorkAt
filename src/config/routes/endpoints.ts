@@ -23,6 +23,8 @@ export const DELETE_POSITION = '/position';
 export const UPDATE_CONCLUSION = '/candidate/conclusions';
 export const VALIDATE_TOKEN = '/candidate/url/validate';
 
+export const SEARCH_CANDIDATE = '/expert/search-candidate'
+
 /* ENDPOINTS FROM LOGIN */
 export const GET_ALL_USERS = '/users';
 export const LOGIN_USER = '/users/signIn';
